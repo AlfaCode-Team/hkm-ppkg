@@ -1,0 +1,4 @@
+# Code owners — required reviewers for every change into `main`.
+# Mirrors the kernel repository, whose branch protection expects at least one
+# code-owner review. Authors cannot approve their own PR, so keep more than one.
+*  @hakeemRash @Alshatri @craftdevscommunity

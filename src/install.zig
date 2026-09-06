@@ -1,4 +1,4 @@
-//! `hkm pkg install` — build `vendor/` from `composer.lock`.
+//! `hkm ppkg install` — build `vendor/` from `composer.lock`.
 //!
 //! Installing from a lock needs no solver: every version is already chosen and
 //! every package carries the URL and immutable reference to fetch. The work is
@@ -6,7 +6,7 @@
 //! rest, because `vendor/composer/installed.json` and `installed.php` are what
 //! `Composer\InstalledVersions` answers from at runtime.
 //!
-//! What it does NOT do is resolve. `hkm pkg require` / `update` — choosing
+//! What it does NOT do is resolve. `hkm ppkg require` / `update` — choosing
 //! versions against Packagist — is the next piece of work, and until it exists
 //! the lock has to come from Composer. That is a real boundary, not a temporary
 //! omission to gloss over: this command reproduces a decision, it does not make
@@ -127,7 +127,7 @@ pub fn run(
     try writeInstalled(allocator, io, root_dir, vendor_dir, placed.items, opts.dev);
 
     // The autoloader is regenerated from what was actually placed, using the
-    // installed.json this run just wrote — the same path `hkm pkg autoload`
+    // installed.json this run just wrote — the same path `hkm ppkg autoload`
     // takes, so an install and a later dump produce identical output.
     const root_manifest = (try manifest.read(allocator, io, root_dir)) orelse manifest.Manifest{};
     const installed = try manifest.readInstalled(allocator, io, vendor_dir);
@@ -239,15 +239,23 @@ fn alreadyInstalled(allocator: std.mem.Allocator, io: Io, dest: []const u8, pkg:
     if (!util.dirExists(Dir.cwd(), io, dest)) return false;
     if (pkg.dist.reference.len == 0) return false;
 
-    const stamp = std.fs.path.join(allocator, &.{ dest, ".hkm-pkg-ref" }) catch return false;
+    const stamp = std.fs.path.join(allocator, &.{ dest, ".ppkg-ref" }) catch return false;
     const recorded = Dir.cwd().readFileAlloc(io, stamp, allocator, .limited(256)) catch return false;
     return std.mem.eql(u8, std.mem.trim(u8, recorded, " \n\r\t"), pkg.dist.reference);
+}
+
+/// May a directory holding this kind of dist be stamped?
+///
+/// Only a downloaded one. See the call site for why writing through a path
+/// repository's symlink is the bug this exists to prevent.
+fn stampable(kind: lockfile.DistType) bool {
+    return kind != .path;
 }
 
 /// Record which reference a directory holds, so the next run can skip it.
 fn stampReference(allocator: std.mem.Allocator, io: Io, dest: []const u8, reference: []const u8) void {
     if (reference.len == 0) return;
-    const stamp = std.fs.path.join(allocator, &.{ dest, ".hkm-pkg-ref" }) catch return;
+    const stamp = std.fs.path.join(allocator, &.{ dest, ".ppkg-ref" }) catch return;
     util.writeFileAtomic(io, stamp, reference) catch {};
 }
 
@@ -266,6 +274,13 @@ fn writeInstalled(
     try Dir.cwd().createDirPath(io, composer_dir);
 
     for (packages) |pkg| {
+        // Never stamp a path repository. Its `dest` is a SYMLINK to a directory
+        // inside the user's own project, so a write there does not land in
+        // vendor/ at all — it lands in their source tree, as an untracked file
+        // in a checkout they did not ask this tool to touch. Nothing is lost by
+        // skipping it: a link has no reference to go stale, and `alreadyInstalled`
+        // is never consulted for one.
+        if (!stampable(pkg.dist.kind)) continue;
         const dest = try std.fs.path.join(allocator, &.{ vendor_dir, pkg.name });
         stampReference(allocator, io, dest, pkg.dist.reference);
     }
@@ -694,4 +709,18 @@ test "php string literals escape quotes and backslashes" {
     var out: std.ArrayList(u8) = .empty;
     try phpString(arena.allocator(), &out, "it's\\fine");
     try testing.expectEqualStrings("'it\\'s\\\\fine'", out.items);
+}
+
+test "a path repository is never stamped" {
+    // `vendor/<name>` for a path repo is a SYMLINK into the user's own project.
+    // Stamping it writes .ppkg-ref into their source checkout — which is exactly
+    // what happened to a git submodule before this guard existed, leaving an
+    // untracked file in a repository this tool has no business writing to.
+    try testing.expect(!stampable(.path));
+
+    // Everything that was actually downloaded still gets one, or every install
+    // re-extracts every package.
+    try testing.expect(stampable(.zip));
+    try testing.expect(stampable(.tar));
+    try testing.expect(stampable(.none));
 }

@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+# A second push to the same branch cancels the first: this suite is fast, and a
+# queue of superseded runs only delays the one whose result anyone wants.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Both, deliberately. This package spends its time in path handling,
+        # file permissions and atomic renames — the three areas where a macOS
+        # and a Linux result differ for reasons the code did not intend.
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Read the pinned Zig version
+        id: zig
+        run: echo "version=$(cat .zig-version)" >> "$GITHUB_OUTPUT"
+
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: ${{ steps.zig.outputs.version }}
+
+      - name: Check formatting
+        run: zig fmt --check build.zig src
+
+      - name: Test
+        # Includes the 5881-row differential corpus recorded from Composer's own
+        # Semver. If this suite is green and the corpus was not regenerated, the
+        # constraint algebra still agrees with Composer.
+        run: zig build test --summary all
+
+      - name: Build
+        run: zig build
+
+  # The package must build for every target the launcher that consumes it ships
+  # for. A compile error behind an `if (builtin.os.tag == .windows)` branch is
+  # invisible on a native build and breaks a release instead.
+  cross:
+    name: cross-compile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Read the pinned Zig version
+        id: zig
+        run: echo "version=$(cat .zig-version)" >> "$GITHUB_OUTPUT"
+
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: ${{ steps.zig.outputs.version }}
+
+      - name: Build for every shipped target
+        run: |
+          set -eu
+          for t in \
+            x86_64-linux-gnu aarch64-linux-gnu \
+            x86_64-macos aarch64-macos \
+            x86_64-windows
+          do
+            echo "── $t"
+            zig build -Dtarget="$t" --release=safe
+          done

@@ -1,10 +1,10 @@
 .{
-    .name = .hkm_pkg,
+    .name = .hkm_ppkg,
     .version = "0.1.0",
     // Generated once by the toolchain; never edited. Together with the name it
     // is how Zig tells "a newer version of this package" apart from "somebody
     // else's package claiming the name".
-    .fingerprint = 0xb4e4a0aa19765118, // Changing this has security and trust implications.
+    .fingerprint = 0x8ba5b6bde7c95077, // Changing this has security and trust implications.
     .minimum_zig_version = "0.16.0",
     .dependencies = .{},
     .paths = .{

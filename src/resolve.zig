@@ -1,4 +1,4 @@
-//! `hkm pkg resolve` — run the solver against a project and report the result.
+//! `hkm ppkg resolve` — run the solver against a project and report the result.
 //!
 //! The point of this command is that the resolver's claim is CHECKABLE.
 //! `--check` resolves the project's `composer.json` from scratch and diffs the
@@ -201,7 +201,7 @@ pub fn command(
         return 1;
     };
 
-    prompt.intro("hkm pkg resolve");
+    prompt.intro("hkm ppkg resolve");
 
     var locals: std.ArrayList(ProjectPool.Local) = .empty;
     for (root.repositories) |repo| {

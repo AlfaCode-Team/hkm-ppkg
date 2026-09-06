@@ -1,6 +1,6 @@
 //! Composer manifest model — `composer.json` and `vendor/composer/installed.json`.
 //!
-//! The shared vocabulary for every `hkm pkg` subcommand, and deliberately the
+//! The shared vocabulary for every `hkm ppkg` subcommand, and deliberately the
 //! FIRST thing written: phase 1 (autoload generation, zero-network test
 //! environments) reads these structures off disk, and phase 2 (a Packagist
 //! client and solver) produces the same structures from the network. Nothing
@@ -9,7 +9,7 @@
 //! Parsing is lenient in one specific direction: an unknown or malformed field
 //! yields the empty value rather than an error. These files are hand-edited, and
 //! a plugin whose `autoload` block has a typo should lose that one rule, not
-//! make `hkm pkg autoload` refuse to run and leave the project with no
+//! make `hkm ppkg autoload` refuse to run and leave the project with no
 //! autoloader at all.
 
 const std = @import("std");

@@ -35,7 +35,7 @@ pub fn unpackTo(
 
     // Beside the destination rather than in a system temp dir, so the final
     // rename stays within one filesystem and cannot fall back to a copy.
-    const staging = try std.fmt.allocPrint(allocator, "{s}.hkm-unpack", .{dest});
+    const staging = try std.fmt.allocPrint(allocator, "{s}.ppkg-unpack", .{dest});
     Dir.cwd().deleteTree(io, staging) catch {};
     try Dir.cwd().createDirPath(io, staging);
     errdefer Dir.cwd().deleteTree(io, staging) catch {};
@@ -51,6 +51,12 @@ pub fn unpackTo(
         var staging_dir = Dir.cwd().openDir(io, staging, .{}) catch return Error.ExtractFailed;
         defer staging_dir.close(io);
 
+        // Path traversal is rejected by `std.zip` itself: `isBadFilename`
+        // refuses an absolute path, any `..` segment and any backslash, and
+        // `extract` fails the whole archive on one. That is a guarantee of the
+        // standard library, NOT of this file — anything that replaces the
+        // extractor inherits the responsibility, and an archive entry named
+        // `../../.ssh/authorized_keys` is what it is protecting against.
         var diagnostics: std.zip.Diagnostics = .{ .allocator = allocator };
         std.zip.extract(staging_dir, &reader, .{ .diagnostics = &diagnostics }) catch return Error.ExtractFailed;
         root_dir = try allocator.dupe(u8, diagnostics.root_dir);

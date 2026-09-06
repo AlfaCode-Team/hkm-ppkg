@@ -83,7 +83,7 @@ fn byName(_: void, a: Installed, b: Installed) bool {
 pub fn show(allocator: std.mem.Allocator, io: Io, root_dir: []const u8, filter: []const u8) !u8 {
     const packages = try load(allocator, io, root_dir);
 
-    prompt.intro("hkm pkg show");
+    prompt.intro("hkm ppkg show");
 
     var shown: usize = 0;
     for (packages) |p| {
@@ -119,7 +119,7 @@ pub fn show(allocator: std.mem.Allocator, io: Io, root_dir: []const u8, filter: 
 pub fn why(allocator: std.mem.Allocator, io: Io, root_dir: []const u8, target: []const u8) !u8 {
     const packages = try load(allocator, io, root_dir);
 
-    prompt.intro("hkm pkg why");
+    prompt.intro("hkm ppkg why");
 
     var present: ?Installed = null;
     for (packages) |p| {
@@ -162,7 +162,7 @@ pub fn why(allocator: std.mem.Allocator, io: Io, root_dir: []const u8, target: [
 pub fn licenses(allocator: std.mem.Allocator, io: Io, root_dir: []const u8) !u8 {
     const packages = try load(allocator, io, root_dir);
 
-    prompt.intro("hkm pkg licenses");
+    prompt.intro("hkm ppkg licenses");
 
     var names: std.ArrayList([]const u8) = .empty;
     var counts: std.ArrayList(usize) = .empty;
@@ -228,7 +228,7 @@ pub fn outdated(
     const root = (try manifest.read(allocator, io, root_dir)) orelse manifest.Manifest{};
     const cache_dir = try fetch.cacheRoot(allocator, env, root_dir);
 
-    prompt.intro("hkm pkg outdated");
+    prompt.intro("hkm ppkg outdated");
     prompt.item("installed", try std.fmt.allocPrint(allocator, "{d} packages", .{packages.len}));
 
     const floor = constraint.stabilityFromName(root.minimum_stability);
@@ -320,7 +320,7 @@ fn declaredConstraintFor(root: manifest.Manifest, name: []const u8) ?[]const u8 
 
 /// Check `composer.json` for the mistakes that break an install later.
 pub fn validate(allocator: std.mem.Allocator, io: Io, root_dir: []const u8) !u8 {
-    prompt.intro("hkm pkg validate");
+    prompt.intro("hkm ppkg validate");
 
     const m = (manifest.read(allocator, io, root_dir) catch {
         prompt.err("composer.json is not valid JSON.");

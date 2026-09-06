@@ -1,0 +1,52 @@
+name: ✨ Feature request
+description: Propose something this package should do that it does not.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing: the README's **"What it does not do"** section lists the
+        current gaps. Some are things worth building (`replace`/`conflict`/
+        `provide`, platform requirements, writing `composer.lock`) and some are
+        deliberate omissions (running `scripts`, cloning sources). Saying which
+        one you are proposing to change saves a round trip.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you unable to do today? Describe the situation, not the solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: composer
+    attributes:
+      label: What Composer does here
+      description: |
+        If Composer already solves this, describe its behaviour — that is the
+        specification, and matching it is usually the whole feature.
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: How would it be verified?
+      description: |
+        The bar in this repository is a differential check against Composer, not
+        a unit test written from the same assumption as the code. If you can see
+        how to record the expected answers from Composer itself, say so.
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to open a pull request for this.

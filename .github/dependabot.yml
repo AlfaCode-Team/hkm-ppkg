@@ -1,0 +1,18 @@
+# Keeps GitHub Actions current so a runtime deprecation is a pull request, not a
+# warning nobody sees. There is no second ecosystem here on purpose: this
+# package has no dependencies, and that is a property worth keeping.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: ci
+    labels:
+      - dependencies
+    groups:
+      actions:
+        patterns:
+          - "*"

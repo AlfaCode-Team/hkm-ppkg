@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Report a security vulnerability
+    url: https://github.com/AlfaCode-Team/hkm-ppkg/security/advisories/new
+    about: Report privately — never as a public issue. See SECURITY.md.
+  - name: 💬 Questions and discussion
+    url: https://github.com/AlfaCode-Team/hkm-kernel/discussions
+    about: Questions about this package, or about the hkm kernel that consumes it.

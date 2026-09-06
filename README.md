@@ -1,17 +1,21 @@
-# hkm-pkg
+# hkm-ppkg
 
 A Composer-compatible package manager, written in Zig.
+
+[![CI](https://github.com/AlfaCode-Team/hkm-ppkg/actions/workflows/ci.yml/badge.svg)](https://github.com/AlfaCode-Team/hkm-ppkg/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Zig](https://img.shields.io/badge/zig-0.16-orange.svg)](https://ziglang.org)
 
 It does the work a build tool actually spends its time on — reading manifests,
 resolving constraints, fetching and placing packages, and generating the
 autoloader — without starting a PHP process to do it.
 
 ```
-Plugin verify (one plugin, cold)   composer  250.06s     hkm-pkg   0.45s
-composer dump-autoload             composer    0.70s     hkm-pkg   0.05s
-install, warm cache                composer    6.56s     hkm-pkg   2.18s
-install, cold cache                                      hkm-pkg  24.10s
-resolve 107 packages                                     hkm-pkg   3.40s
+Plugin verify (one plugin, cold)   composer  250.06s     ppkg   0.45s
+composer dump-autoload             composer    0.70s     ppkg   0.05s
+install, warm cache                composer    6.56s     ppkg   2.18s
+install, cold cache                                      ppkg  24.10s
+resolve 107 packages                                     ppkg   3.40s
 ```
 
 The first row is why this exists. It is not a faster autoloader; it is the
@@ -55,6 +59,11 @@ than one that does less:
 - `replace`, `conflict`, `provide` and `suggest` are unmodelled; platform
   requirements are not verified; `scripts` never run; `auth.json` is not read;
   `tar` dists are unsupported (zip only).
+- **A dist with no `shasum` in the lock is installed without an integrity check,
+  and says nothing.** The digest is verified whenever the lock records one — see
+  `verifySha1` — but the absent case is currently silent rather than a warning.
+  Composer behaves the same way; that does not make it a good default, and it is
+  listed here rather than left to be discovered.
 
 ## Layout
 
@@ -77,6 +86,11 @@ than one that does less:
 | `report.zig` | where output goes — silent until a host installs a sink |
 | `util.zig` | the few path and file helpers the above are built on |
 
+Path traversal during extraction (`../`, absolute paths, backslashes) is
+rejected by `std.zip` itself, not by code in this repository — a guarantee that
+moves with the standard library, and one that anything replacing the extractor
+inherits.
+
 `runtime.zig` is worth one line of explanation: Composer's `ClassLoader.php` and
 `InstalledVersions.php` are its own MIT-licensed source, and they are **copied
 from a donor vendor tree, never vendored into this repository**. Carrying
@@ -89,15 +103,15 @@ looking.
 
 ```zig
 // build.zig
-const pkg = b.dependency("hkm_pkg", .{}).module("pkg");
-exe.root_module.addImport("pkg", pkg);
+const ppkg = b.dependency("hkm_ppkg", .{}).module("ppkg");
+exe.root_module.addImport("ppkg", ppkg);
 ```
 
 or, for a sibling checkout with no package manager involved:
 
 ```zig
-const pkg = b.createModule(.{
-    .root_source_file = b.path("../modules/hkm-pkg/src/root.zig"),
+const ppkg = b.createModule(.{
+    .root_source_file = b.path("../modules/hkm-ppkg/src/root.zig"),
     .target = target,
     .optimize = optimize,
 });
@@ -106,7 +120,7 @@ const pkg = b.createModule(.{
 Nothing prints until a host asks it to. Install an output sink once at startup:
 
 ```zig
-pkg.report.use(.{ .intro = myIntro, .item = myKeyValue, .warn = myWarn, ... });
+ppkg.report.use(.{ .intro = myIntro, .item = myKeyValue, .warn = myWarn, ... });
 ```
 
 Every field defaults to a no-op, so a partial installation is fine — and a host
@@ -117,9 +131,16 @@ decided what its stdout looks like.
 zig build test     # 77 tests, including the 5881-row differential corpus
 ```
 
+## Contributing
+
+[CONTRIBUTING.md](CONTRIBUTING.md) — the short version is that a claim about
+Composer's behaviour must be checked against Composer, and the corpus exists so
+that it can be. Security reports go through [SECURITY.md](SECURITY.md), never a
+public issue.
+
 ## Where it is used
 
-`hkm pkg` in [hkm-kernel](https://github.com/AlfaCode-Team/hkm-kernel) —
+`hkm ppkg` in [hkm-kernel](https://github.com/AlfaCode-Team/hkm-kernel) —
 `install`, `autoload`, `resolve`, `outdated`, `show`, `why`, `licenses`,
 `validate`. The argument parsing, the kernel-specific paths and the output style
 live there; nothing in this repository knows what an hkm plugin is.

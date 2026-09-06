@@ -1,0 +1,97 @@
+name: 🐛 Bug report
+description: Something produced the wrong vendor/, the wrong autoloader, or the wrong answer.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing this.
+
+        **If Composer does something different, that difference IS the bug
+        report.** You do not need to work out which line is wrong — showing both
+        outputs is more useful than a theory about the cause.
+
+        ⚠️ **Do not report security vulnerabilities here.** Archive extraction,
+        checksum verification and anything that writes outside `vendor/` go
+        through the [Security Policy](../blob/main/SECURITY.md) privately.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched existing issues and this is not a duplicate.
+          required: true
+        - label: This is not a security vulnerability (those go through the Security Policy).
+          required: true
+        - label: I am on the latest tag or `main`.
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened
+      description: What did you expect, and what did you get instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: composer
+    attributes:
+      label: What Composer does
+      description: |
+        The equivalent Composer command and its output. If the two agree and you
+        still think the behaviour is wrong, say so — it may be a bug we are
+        reproducing faithfully.
+      render: shell
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. composer.json / composer.lock (attach or paste the relevant part)
+        2. ppkg install .
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Command output
+      description: The full output, including the summary lines at the end.
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Tag or commit SHA of this package.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      description: |
+        Asked because path handling, file permissions and atomic renames are
+        where a macOS and a Linux result differ for reasons the code did not
+        intend.
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: zig
+    attributes:
+      label: Zig version
+      description: "`zig version` — only needed if you built it yourself."

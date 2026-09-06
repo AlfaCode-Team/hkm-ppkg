@@ -110,7 +110,23 @@ test "the default sink swallows everything" {
     // The property that matters: importing this package and never configuring
     // it must not write to a host's stdout. A library that greets you is a
     // library you cannot embed.
+    //
+    // Asserted on the pointers rather than by calling and observing nothing,
+    // because "no output appeared" is not something a test can see — it is what
+    // a test that forgot to assert also looks like.
     silence();
+    try testing.expectEqual(&ignoreLine, sink.intro);
+    try testing.expectEqual(&ignoreLine, sink.outro);
+    try testing.expectEqual(&ignoreLine, sink.section);
+    try testing.expectEqual(&ignorePair, sink.item);
+    try testing.expectEqual(&ignoreLine, sink.note);
+    try testing.expectEqual(&ignoreLine, sink.ok);
+    try testing.expectEqual(&ignoreLine, sink.muted);
+    try testing.expectEqual(&ignoreLine, sink.warn);
+    try testing.expectEqual(&ignoreLine, sink.err);
+    try testing.expectEqual(&ignoreNothing, sink.blank);
+
+    // And calling through them is still safe with nothing installed.
     intro("quiet");
     item("k", "v");
     err("nothing should appear");
