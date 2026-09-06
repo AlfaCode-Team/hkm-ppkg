@@ -128,8 +128,12 @@ that installs nothing gets a silent library rather than a library that has
 decided what its stdout looks like.
 
 ```sh
-zig build test     # 77 tests, including the 5881-row differential corpus
+zig build test     # 78 tests, including the 5881-row differential corpus
+zig build check    # compile for the selected target (-Dtarget=…) without running
 ```
+
+`zig build` on its own compiles nothing: this package installs no artifact, so
+the default step succeeds instantly whether or not the code builds. Use `check`.
 
 ## Contributing
 

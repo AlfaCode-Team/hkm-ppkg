@@ -40,8 +40,12 @@ against `composer dump-autoload`, with and without `-o`. If your change passes
 
 ```sh
 zig build test          # 78 tests, including the differential corpus
-zig build               # nothing to install; this is a library
+zig build check         # compile only; add -Dtarget=… to cross-compile
 ```
+
+Note that plain `zig build` compiles **nothing** — the package installs no
+artifact, so the default step succeeds without touching the code. `check` is
+what actually compiles it, and it is what CI runs for every shipped target.
 
 Zig version is pinned in `.zig-version`. No other dependencies — that is
 deliberate, and a PR that adds one needs to argue for it.

@@ -27,8 +27,12 @@ jobs:
         # and a Linux result differ for reasons the code did not intend.
         os: [ubuntu-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
+      # The pin is a RELEASED Zig, not a dev build, so it stays fetchable and a
+      # fork PR needs no repository configuration to be green. The kernel that
+      # consumes this package pins a dev build of its own; that is its concern,
+      # and `minimum_zig_version` in build.zig.zon is the contract between them.
       - name: Read the pinned Zig version
         id: zig
         run: echo "version=$(cat .zig-version)" >> "$GITHUB_OUTPUT"
@@ -46,8 +50,10 @@ jobs:
         # constraint algebra still agrees with Composer.
         run: zig build test --summary all
 
-      - name: Build
-        run: zig build
+      # `zig build` alone compiles nothing here — the package installs no
+      # artifact — so the compile is asked for explicitly.
+      - name: Compile
+        run: zig build check
 
   # The package must build for every target the launcher that consumes it ships
   # for. A compile error behind an `if (builtin.os.tag == .windows)` branch is
@@ -56,8 +62,12 @@ jobs:
     name: cross-compile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
+      # The pin is a RELEASED Zig, not a dev build, so it stays fetchable and a
+      # fork PR needs no repository configuration to be green. The kernel that
+      # consumes this package pins a dev build of its own; that is its concern,
+      # and `minimum_zig_version` in build.zig.zon is the contract between them.
       - name: Read the pinned Zig version
         id: zig
         run: echo "version=$(cat .zig-version)" >> "$GITHUB_OUTPUT"
@@ -75,5 +85,5 @@ jobs:
             x86_64-windows
           do
             echo "── $t"
-            zig build -Dtarget="$t" --release=safe
+            zig build check -Dtarget="$t" --release=safe
           done

@@ -21,6 +21,12 @@ because that is the change that matters to a consumer.
 
 ### Fixed
 
+- `zig build check`: plain `zig build` compiled nothing, because the package
+  installs no artifact. The CI compile and cross-compile jobs written against it
+  would have been green for every target regardless of whether the code built.
+- The version-normalisation test's table of 81 real (version, version_normalized)
+  pairs was empty, so the test asserted nothing while reading as the strongest
+  one in the file. The pairs are present and a mutation confirms they run.
 - `.ppkg-ref` was written into path repositories. Because `vendor/<name>` for a
   path repo is a symlink into the user's own project, the write landed in their
   source checkout — leaving an untracked file in a git repository this tool has

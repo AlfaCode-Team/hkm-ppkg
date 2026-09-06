@@ -38,4 +38,24 @@ pub fn build(b: *std.Build) void {
 
     const test_step = b.step("test", "Run the package manager unit tests");
     test_step.dependOn(&b.addRunArtifact(unit_tests).step);
+
+    // `zig build check -Dtarget=…` — COMPILE for a target without running.
+    //
+    // This exists because `zig build` on its own compiles nothing here: the
+    // package exposes a module and installs no artifact, so the default step
+    // succeeds instantly on code that does not build. A cross-compile job
+    // written against it would have been green for every target, forever.
+    //
+    // Depending on the compile step rather than a run step is the point — the
+    // binary is produced for a foreign target and never executed.
+    const check = b.addTest(.{
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/root.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
+    });
+
+    const check_step = b.step("check", "Compile for the selected target without running");
+    check_step.dependOn(&check.step);
 }
