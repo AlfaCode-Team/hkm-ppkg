@@ -27,7 +27,7 @@ jobs:
         # and a Linux result differ for reasons the code did not intend.
         os: [ubuntu-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Read the pinned Zig version
         id: zig
@@ -56,7 +56,7 @@ jobs:
     name: cross-compile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Read the pinned Zig version
         id: zig
