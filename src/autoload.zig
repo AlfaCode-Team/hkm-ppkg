@@ -1009,8 +1009,10 @@ fn hasContentFor(p: Plan, which: Which) bool {
 pub fn write(allocator: std.mem.Allocator, io: Io, vendor_dir: []const u8, p: Plan) !void {
     const dir = try std.fs.path.join(allocator, &.{ vendor_dir, "composer" });
 
-    inline for (std.meta.fields(Which)) |f| {
-        const which: Which = @enumFromInt(f.value);
+    // std.enums.values rather than std.meta.fields: the Zig 0.17 dev build
+    // hkm-kernel compiles this package with turns meta.fields into a compile
+    // error, and values() has the same signature on 0.16 and 0.17.
+    for (std.enums.values(Which)) |which| {
         if (which.conditional() and !hasContentFor(p, which)) {
             const stale = try std.fs.path.join(allocator, &.{ dir, which.fileName() });
             Dir.cwd().deleteFile(io, stale) catch {};

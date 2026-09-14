@@ -12,6 +12,8 @@ because that is the change that matters to a consumer.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-09-14
+
 ### Added
 
 - **A standalone `ppkg` binary, released for every platform.** Linux x86_64,
@@ -386,6 +388,12 @@ because that is the change that matters to a consumer.
   operator who knows better.
 
 ### Fixed
+
+- **It builds with Zig 0.17 as well as 0.16.** hkm-kernel compiles this
+  package into its launcher with a pinned Zig 0.17 development build, where
+  array repetition with `**` no longer parses and `std.meta.fields` is a
+  compile error. The one use of each now takes a form both versions accept
+  (`@splat`, `std.enums.values`).
 
 - **The global flags work on every command.** `-q`, `-n`, `-d`/`--working-dir`,
   `--no-cache`, `--ansi`/`--no-ansi` and `--no-plugins` were read only by the

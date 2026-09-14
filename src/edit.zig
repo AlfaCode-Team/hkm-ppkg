@@ -494,7 +494,10 @@ test "a glob selects several packages, an exact name selects one" {
     try testing.expect(globMatch("*", "anything/at-all"));
     try testing.expect(globMatch("*/*fill*", "symfony/polyfill-mbstring"));
     // The pathological pattern a recursive matcher would blow the stack on.
-    try testing.expect(!globMatch("*a*a*a*a*a*a*a*a*b", "a" ** 64));
+    // Built with @splat rather than `"a" ** 64`: array repetition with `**` does
+    // not parse on the Zig 0.17 dev build hkm-kernel compiles this package with.
+    const long_name: [64]u8 = @splat('a');
+    try testing.expect(!globMatch("*a*a*a*a*a*a*a*a*b", &long_name));
 }
 
 test "sort-packages is read from the manifest text" {
