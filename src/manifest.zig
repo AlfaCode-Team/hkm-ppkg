@@ -67,17 +67,33 @@ pub const Dep = struct {
 pub const Repo = struct {
     kind: Kind,
     url: []const u8,
+    /// The entry exactly as declared.
+    ///
+    /// A `package` repository's whole point is the package definition INSIDE
+    /// the entry — there is nothing to fetch and no url to follow — so the
+    /// parsed shape has to keep it. Every other kind ignores this.
+    raw: ?std.json.Value = null,
 
-    pub const Kind = enum { composer, vcs, path, package, artifact, unknown };
+    pub const Kind = enum { composer, vcs, hg, svn, path, package, artifact, unknown };
 
     pub fn kindOf(name: []const u8) Kind {
         if (std.mem.eql(u8, name, "composer")) return .composer;
         if (std.mem.eql(u8, name, "vcs") or std.mem.eql(u8, name, "git") or
-            std.mem.eql(u8, name, "github") or std.mem.eql(u8, name, "gitlab")) return .vcs;
+            std.mem.eql(u8, name, "github") or std.mem.eql(u8, name, "gitlab") or
+            std.mem.eql(u8, name, "bitbucket")) return .vcs;
+        // Composer accepts both spellings of each, and a project that wrote the
+        // long one is not declaring something different.
+        if (std.mem.eql(u8, name, "hg") or std.mem.eql(u8, name, "mercurial")) return .hg;
+        if (std.mem.eql(u8, name, "svn") or std.mem.eql(u8, name, "subversion")) return .svn;
         if (std.mem.eql(u8, name, "path")) return .path;
         if (std.mem.eql(u8, name, "package")) return .package;
         if (std.mem.eql(u8, name, "artifact")) return .artifact;
         return .unknown;
+    }
+
+    /// Is this one of the three kinds `vcs.zig` reads?
+    pub fn isVcs(self: Repo) bool {
+        return self.kind == .vcs or self.kind == .hg or self.kind == .svn;
     }
 };
 
@@ -100,6 +116,62 @@ pub const Manifest = struct {
     minimum_stability: []const u8 = "stable",
     /// `prefer-stable` — take a stable release over a newer unstable one.
     prefer_stable: bool = false,
+
+    /// `conflict` / `replace` / `provide` — the three relations that decide
+    /// whether two packages can coexist, and which names a package answers to
+    /// besides its own. Modelling `require` alone gets a graph that looks solved
+    /// and is not: `symfony/polyfill-mbstring` PROVIDES `ext-mbstring`, and
+    /// `psr/log` 3.x REPLACES nothing but CONFLICTS with implementations pinned
+    /// to 1.x.
+    conflict: []const Dep = &.{},
+    replace: []const Dep = &.{},
+    provide: []const Dep = &.{},
+
+    /// `config.platform` — the operator's declaration of the machine this
+    /// project targets, which overrides whatever the running interpreter says.
+    config_platform: []const Dep = &.{},
+    /// `config.vendor-dir` — where the tree is installed. Resolved into a
+    /// `layout.Layout` rather than used raw: it may be relative, absolute, or
+    /// overridden by `COMPOSER_VENDOR_DIR`.
+    config_vendor_dir: ?[]const u8 = null,
+    /// `config.bin-dir`. Defaults to `{$vendor-dir}/bin`, and is NOT implied by
+    /// `vendor-dir` — a project may move one without the other.
+    config_bin_dir: ?[]const u8 = null,
+    /// `config.platform-check` — `"true"`, `"false"` or `"php-only"`, kept as
+    /// written because the key is a bool in two of its three spellings and a
+    /// string in the third.
+    config_platform_check: ?[]const u8 = null,
+    /// `config.allow-plugins` is present — the project expects composer plugins
+    /// to run, and none will.
+    config_allow_plugins: bool = false,
+    /// The whole `config` block, unparsed.
+    ///
+    /// The four fields above are the ones the loader and the layout need before
+    /// anything else exists; every OTHER key is read through `settings.zig`,
+    /// which merges this block with `$COMPOSER_HOME/config.json` and the
+    /// environment. Keeping the raw object is what lets that merge happen
+    /// without this struct growing a field per key — there are sixty-one of
+    /// them, and a project may set one this build has never heard of.
+    config_raw: ?std.json.ObjectMap = null,
+
+    /// `include-path` — directories to add to PHP's include_path.
+    ///
+    /// A PSR-0-era mechanism, still declared by packages old enough to predate
+    /// autoloading conventions. Composer collects these into
+    /// `vendor/composer/include_paths.php`; a tree missing that file leaves
+    /// such a package unable to find its own classes.
+    include_path: []const []const u8 = &.{},
+    /// `extra.class` on a `composer-plugin` — the entry point Composer would
+    /// instantiate. Recorded so a plugin can be REPORTED precisely; nothing
+    /// here loads it.
+    plugin_class: []const u8 = "",
+    /// `archive.exclude` — the patterns `pack` keeps out of a published
+    /// archive, in gitignore spelling.
+    archive_exclude: []const []const u8 = &.{},
+    /// The script EVENTS declared, for reporting. The commands themselves are
+    /// not read: nothing here runs them, and holding a list of shell commands
+    /// this package will never execute invites someone to execute them.
+    scripts: []const []const u8 = &.{},
 
     /// Where this package's files live, RELATIVE to the vendor directory
     /// (`vendor/composer/installed.json` spells it `install-path`, e.g.
@@ -154,6 +226,51 @@ pub fn fromObject(allocator: std.mem.Allocator, obj: std.json.ObjectMap) !Manife
 
     m.require = try deps(allocator, obj, "require");
     m.require_dev = try deps(allocator, obj, "require-dev");
+    m.conflict = try deps(allocator, obj, "conflict");
+    m.replace = try deps(allocator, obj, "replace");
+    m.provide = try deps(allocator, obj, "provide");
+
+    if (obj.get("config")) |cfg| {
+        if (cfg == .object) {
+            m.config_platform = try deps(allocator, cfg.object, "platform");
+            if (cfg.object.get("vendor-dir")) |v| {
+                if (v == .string) m.config_vendor_dir = v.string;
+            }
+            if (cfg.object.get("bin-dir")) |v| {
+                if (v == .string) m.config_bin_dir = v.string;
+            }
+            if (cfg.object.get("platform-check")) |v| {
+                m.config_platform_check = switch (v) {
+                    .string => |t| t,
+                    .bool => |b| if (b) "true" else "false",
+                    else => null,
+                };
+            }
+            m.config_allow_plugins = cfg.object.get("allow-plugins") != null;
+            m.config_raw = cfg.object;
+        }
+    }
+
+    m.include_path = try strList(allocator, obj, "include-path");
+
+    if (obj.get("extra")) |ex| {
+        if (ex == .object) {
+            if (strField(ex.object, "class")) |v| m.plugin_class = v;
+        }
+    }
+
+    if (obj.get("archive")) |ar| {
+        if (ar == .object) m.archive_exclude = try strList(allocator, ar.object, "exclude");
+    }
+
+    if (obj.get("scripts")) |sc| {
+        if (sc == .object) {
+            var events: std.ArrayList([]const u8) = .empty;
+            var it = sc.object.iterator();
+            while (it.next()) |e| try events.append(allocator, e.key_ptr.*);
+            m.scripts = try events.toOwnedSlice(allocator);
+        }
+    }
 
     if (obj.get("autoload")) |v| m.autoload = try autoloadOf(allocator, v);
     if (obj.get("autoload-dev")) |v| m.autoload_dev = try autoloadOf(allocator, v);
@@ -261,10 +378,18 @@ fn deps(allocator: std.mem.Allocator, obj: std.json.ObjectMap, key: []const u8) 
     var out: std.ArrayList(Dep) = .empty;
     var it = raw.object.iterator();
     while (it.next()) |entry| {
-        if (entry.value_ptr.* != .string) continue;
+        // `config.platform` may spell "pretend this is absent" as a JSON
+        // `false` rather than a string. Recording it as the literal "false"
+        // keeps one Dep shape for every relation; nothing else in composer.json
+        // has a boolean here, so a `require` cannot be affected.
+        const constraint_text = switch (entry.value_ptr.*) {
+            .string => |v| v,
+            .bool => |b| if (b) "*" else "false",
+            else => continue,
+        };
         try out.append(allocator, .{
             .name = entry.key_ptr.*,
-            .constraint = entry.value_ptr.string,
+            .constraint = constraint_text,
         });
     }
     return out.toOwnedSlice(allocator);
@@ -297,6 +422,7 @@ fn repoOf(value: std.json.Value) !?Repo {
     return .{
         .kind = Repo.kindOf(kind),
         .url = strField(value.object, "url") orelse "",
+        .raw = value,
     };
 }
 

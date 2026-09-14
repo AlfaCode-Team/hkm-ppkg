@@ -247,6 +247,29 @@ pub const Constraint = struct {
         const v = parseVersion(raw) orelse return false;
         return self.matches(v);
     }
+
+    /// The same constraint with every upper bound dropped.
+    ///
+    /// What `--ignore-platform-req=php+` means: keep the floor, lift the
+    /// ceiling. A project whose dependencies declare `^8.1` can then be tested
+    /// on PHP 9 without also pretending it runs on PHP 5 — which is what the
+    /// unsuffixed form would say, and which is a different and much larger
+    /// claim.
+    ///
+    /// A group left with no terms accepts everything, which is correct: `<8.0`
+    /// with its ceiling removed is `*`.
+    pub fn withoutUpperBounds(self: Constraint, allocator: std.mem.Allocator) !Constraint {
+        var groups: std.ArrayList([]const Term) = .empty;
+        for (self.groups) |group| {
+            var kept: std.ArrayList(Term) = .empty;
+            for (group) |term| {
+                if (term.op == .lt or term.op == .lte) continue;
+                try kept.append(allocator, term);
+            }
+            try groups.append(allocator, try kept.toOwnedSlice(allocator));
+        }
+        return .{ .groups = try groups.toOwnedSlice(allocator) };
+    }
 };
 
 pub const Error = error{BadConstraint};
@@ -291,11 +314,41 @@ fn parseGroup(allocator: std.mem.Allocator, text: []const u8) ![]const Term {
         return terms.toOwnedSlice(allocator);
     }
 
+    // `>= 8.1` is ONE term written with a space in it, not a bare `>=` followed
+    // by `8.1`. Composer's splitter has a lookbehind that refuses to break after
+    // an operator character for exactly this reason; tokenising on whitespace
+    // and then rejoining is the same rule, arrived at from the other side.
+    //
+    // It matters more than the spelling suggests: a constraint that fails to
+    // parse is not a near miss, it is a package whose requirement this tool
+    // cannot evaluate at all.
     var it = std.mem.tokenizeAny(u8, chunk, ", \t");
+    var pending: ?[]const u8 = null;
     while (it.next()) |token| {
+        if (pending) |op| {
+            pending = null;
+            try appendTerms(allocator, try std.fmt.allocPrint(allocator, "{s}{s}", .{ op, token }), &terms);
+            continue;
+        }
+        if (isBareOperator(token)) {
+            pending = token;
+            continue;
+        }
         try appendTerms(allocator, token, &terms);
     }
+    // A trailing operator with nothing after it is malformed, and saying so
+    // beats silently dropping half of what the manifest asked for.
+    if (pending != null) return Error.BadConstraint;
     return terms.toOwnedSlice(allocator);
+}
+
+/// A token that is ONLY an operator, so the version it applies to is the next
+/// token along.
+fn isBareOperator(token: []const u8) bool {
+    for ([_][]const u8{ ">=", "<=", "!=", "<>", "==", ">", "<", "=", "^", "~" }) |op| {
+        if (std.mem.eql(u8, token, op)) return true;
+    }
+    return false;
 }
 
 fn hyphenUpperBound(raw: []const u8) !Version {
@@ -695,6 +748,12 @@ test "agrees with composer's own Semver on every constraint in the kernel's tree
     // composer.lock, then crossed with a spread of versions for negative
     // coverage, and evaluated by `Composer\Semver\Semver::satisfies` itself.
     //
+    // The last 165 rows cover constraints written with a SPACE between the
+    // operator and the version (`>= 8.1`, `^ 8.1`, `>= 1.0 < 2.0`). Composer
+    // accepts every one of them; this parser used to reject them outright, and
+    // a constraint that will not parse is not a rounding error — it is a
+    // requirement the resolver cannot evaluate at all.
+    //
     // Regenerate with the two commands in docs/hkm-cli-usage.md; the point is
     // that agreement is MEASURED against the implementation being replaced,
     // rather than asserted from a reading of the rules.
@@ -735,6 +794,6 @@ test "agrees with composer's own Semver on every constraint in the kernel's tree
         }
     }
 
-    try testing.expect(checked > 5000);
+    try testing.expect(checked > 6000);
     try testing.expectEqual(@as(usize, 0), disagreements);
 }

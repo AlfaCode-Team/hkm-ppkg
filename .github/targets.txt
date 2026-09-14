@@ -1,0 +1,21 @@
+# Every platform a release ships a `ppkg` binary for — the ONE list.
+#
+# Read by .github/scripts/package.sh (the release archives) and by ci.yml's
+# `cross-compile` job, so a target cannot be released without first being
+# compiled on every pull request.
+#
+# columns: zig target          asset name           [cpu]
+#
+# Linux is musl and static: one binary for every distribution, whatever its
+# libc. The asset name is what install.sh derives from `uname -s`/`uname -m`;
+# changing one without the other breaks `curl | sh` for that platform.
+
+x86_64-linux-musl       linux-x86_64
+aarch64-linux-musl      linux-aarch64
+arm-linux-musleabihf    linux-armv7         generic+v7a
+riscv64-linux-musl      linux-riscv64
+x86_64-macos            macos-x86_64
+aarch64-macos           macos-aarch64
+x86_64-windows-gnu      windows-x86_64
+aarch64-windows-gnu     windows-aarch64
+x86_64-freebsd          freebsd-x86_64

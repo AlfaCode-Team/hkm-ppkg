@@ -8,12 +8,15 @@
 //!     autoload_files.php       identifier    → file, included eagerly
 //!     autoload_static.php      all of the above, pre-baked for opcache
 //!
-//! It deliberately does NOT emit `autoload.php`, `autoload_real.php` or
-//! `ClassLoader.php`. Those are Composer's runtime, they do not change when a
-//! package is added, and rewriting them would mean maintaining a copy of
-//! someone else's loader against the day it changes. Regenerating only the DATA
-//! is both the whole of what a dump-autoload does in practice and the part that
-//! cannot break the loader.
+//! plus `include_paths.php` when any package declares an `include-path`.
+//!
+//! It does not emit `autoload.php`, `autoload_real.php` or `ClassLoader.php` —
+//! `runtime.zig` does, because those three depend on WHICH of the files above
+//! were written (a project with no `files` entries gets an `autoload_real.php`
+//! with no `$filesToLoad` block) and so must be generated after this decides.
+//! Splitting them that way is also what keeps this file free of Composer's own
+//! source: everything here is generated data, and the embedded MIT loader lives
+//! next door with its licence.
 //!
 //! The output is byte-comparable with Composer's, which is the point: it makes
 //! the claim "this generator is correct" testable by diff against the tool it
@@ -29,6 +32,7 @@
 //!                                          package is last)
 
 const std = @import("std");
+const layout = @import("layout.zig");
 const manifest = @import("manifest.zig");
 const classmap = @import("classmap.zig");
 
@@ -71,12 +75,73 @@ pub const Plan = struct {
     psr0: []const Psr,
     classes: []const ClassEntry,
     files: []const FileEntry,
+    /// `include-path` directories, in package-map order — root first, then the
+    /// installed packages. Composer writes these to `include_paths.php` and
+    /// `autoload_real.php` pushes them onto PHP's include_path.
+    include_paths: []const Path = &.{},
 
     /// The suffix on `ComposerStaticInit…`. Composer derives it from the root
     /// package name plus the vendor path; any stable value works, and stability
     /// is what matters — a changing class name leaves the previous static file
     /// resident in opcache under a name nothing loads.
     hash: []const u8,
+
+    /// The PHP that reaches from the generated files to the two anchors. Not
+    /// constants, because `config.vendor-dir` moves the vendor tree and every
+    /// one of these grows or loses a `/..` when it does.
+    anchors: Anchors,
+};
+
+/// The four path expressions the generated files are written in terms of.
+///
+/// Composer computes each with `findShortestPathCode` rather than assuming a
+/// layout, and so does this: with `vendor-dir` set to `lib/vendor` the base
+/// anchor is `dirname(dirname($vendorDir))`, and a hardcoded `dirname($vendorDir)`
+/// would emit an autoloader whose every root-package rule points one directory
+/// above the project.
+pub const Anchors = struct {
+    /// `$vendorDir = …` — from `<vendor>/composer` to `<vendor>`.
+    vendor_code: []const u8 = "dirname(__DIR__)",
+    /// `$baseDir = …` — from `<vendor>` to the project root, with `__DIR__`
+    /// rewritten to `$vendorDir` exactly as AutoloadGenerator rewrites it.
+    base_code: []const u8 = "dirname($vendorDir)",
+    /// The `autoload_static.php` prefix for a vendor-anchored path.
+    vendor_static: []const u8 = "__DIR__ . '/..' . '",
+    /// The `autoload_static.php` prefix for a root-anchored path.
+    base_static: []const u8 = "__DIR__ . '/../..' . '",
+
+    /// Derive all four from a resolved layout.
+    pub fn of(allocator: std.mem.Allocator, lay: layout.Layout) !Anchors {
+        const composer_dir = try std.fs.path.join(allocator, &.{ lay.vendor, "composer" });
+
+        var base_code = try layout.shortestPathCode(allocator, lay.vendor, lay.root, true, false);
+        // AutoloadGenerator: str_replace('__DIR__', '$vendorDir', $appBaseDirCode).
+        // The expression is evaluated in a file that is NOT in $vendorDir, so
+        // the anchor has to be the variable it just assigned.
+        base_code = try replaceAll(allocator, base_code, "__DIR__", "$vendorDir");
+
+        return .{
+            .vendor_code = try layout.shortestPathCode(allocator, composer_dir, lay.vendor, true, false),
+            .base_code = base_code,
+            .vendor_static = try staticPrefix(allocator, composer_dir, lay.vendor),
+            .base_static = try staticPrefix(allocator, composer_dir, lay.root),
+        };
+    }
+
+    /// `$vendorPathCode . " . '/"` — the static file writes the anchor, then a
+    /// separate literal that always opens with a slash.
+    fn staticPrefix(allocator: std.mem.Allocator, from: []const u8, to: []const u8) ![]const u8 {
+        const code = try layout.shortestPathCode(allocator, from, to, true, true);
+        return std.fmt.allocPrint(allocator, "{s} . '", .{code});
+    }
+
+    fn replaceAll(allocator: std.mem.Allocator, in: []const u8, needle: []const u8, with: []const u8) ![]const u8 {
+        if (std.mem.indexOf(u8, in, needle) == null) return in;
+        const size = std.mem.replacementSize(u8, in, needle, with);
+        const out = try allocator.alloc(u8, size);
+        _ = std.mem.replace(u8, in, needle, with, out);
+        return out;
+    }
 };
 
 pub const Options = struct {
@@ -84,18 +149,25 @@ pub const Options = struct {
     dev: bool = true,
     /// Scan psr-4/psr-0 directories into the classmap as well (`-o`).
     optimize: bool = false,
+    /// `config.autoloader-suffix`, when the project pinned one.
+    ///
+    /// Highest precedence, above even the suffix already on disk — which is
+    /// Composer's order, and the point of the setting: a project pins it so
+    /// that two builds of the same source produce the same class names.
+    suffix: ?[]const u8 = null,
 };
 
-/// Build the plan for the project rooted at `base_dir` with `vendor_dir`.
+/// Build the plan for the project described by `lay`.
 pub fn plan(
     allocator: std.mem.Allocator,
     io: Io,
-    base_dir: []const u8,
-    vendor_dir: []const u8,
+    lay: layout.Layout,
     root: Manifest,
     installed: []const Manifest,
     opts: Options,
 ) !Plan {
+    const base_dir = lay.root;
+    const vendor_dir = lay.vendor;
     var psr4: std.ArrayList(Psr) = .empty;
     var psr0: std.ArrayList(Psr) = .empty;
     var files: std.ArrayList(FileEntry) = .empty;
@@ -128,8 +200,26 @@ pub fn plan(
 
     const sorted = try sortPackages(allocator, installed);
 
+    // `include-path` walks the PACKAGE MAP, which is a third order again: the
+    // root first, then the packages as `installed.json` lists them. Not the
+    // `files` order and not the reversed rule order — Composer builds the map
+    // once and `getIncludePathsFile` reads it directly, so include_paths.php
+    // comes out in map order even though every other generated file does not.
+    var include_paths: std.ArrayList(Path) = .empty;
+    for (root.include_path) |raw| {
+        try include_paths.append(allocator, .{ .anchor = .base, .rel = try joinRel(allocator, "", raw) });
+    }
+    for (installed) |pkg| {
+        if (pkg.include_path.len == 0) continue;
+        const at = try packageDir(allocator, pkg);
+        for (pkg.include_path) |raw| {
+            try include_paths.append(allocator, .{ .anchor = at.anchor, .rel = try joinRel(allocator, at.rel, raw) });
+        }
+    }
+
     for (sorted) |pkg| {
-        try collectFiles(allocator, pkg, .vendor, try packageDir(allocator, pkg), false, opts, &files);
+        const at = try packageDir(allocator, pkg);
+        try collectFiles(allocator, pkg, at.anchor, at.rel, false, opts, &files);
     }
     try collectFiles(allocator, root, .base, "", true, opts, &files);
 
@@ -138,7 +228,8 @@ pub fn plan(
     while (i > 0) {
         i -= 1;
         const pkg = sorted[i];
-        try collectRules(allocator, io, base_dir, vendor_dir, pkg, .vendor, try packageDir(allocator, pkg), false, opts, &psr4, &psr0, &classes);
+        const at = try packageDir(allocator, pkg);
+        try collectRules(allocator, io, base_dir, vendor_dir, pkg, at.anchor, at.rel, false, opts, &psr4, &psr0, &classes);
     }
 
     // Composer merges rules for a prefix declared by more than one package,
@@ -155,7 +246,9 @@ pub fn plan(
         .psr0 = merged0,
         .classes = try dedupeClasses(allocator, classes.items),
         .files = try files.toOwnedSlice(allocator),
-        .hash = try staticSuffix(allocator, io, vendor_dir, base_dir, root),
+        .include_paths = try include_paths.toOwnedSlice(allocator),
+        .hash = try staticSuffix(allocator, io, vendor_dir, base_dir, root, opts.suffix),
+        .anchors = try Anchors.of(allocator, lay),
     };
 }
 
@@ -397,29 +490,46 @@ fn absExclusions(
     return out.toOwnedSlice(allocator);
 }
 
-/// The package's directory, anchored at `$vendorDir`.
+/// Where a package's files are, and which anchor the generated paths use.
 ///
 /// `installed.json` spells `install-path` relative to `vendor/composer/`, and
-/// BOTH directions occur: `../guzzlehttp/guzzle` climbs out to
-/// `vendor/guzzlehttp/guzzle`, while Composer's own packages sit alongside it as
-/// `./xdebug-handler` = `vendor/composer/xdebug-handler`. Stripping a leading
-/// `../` therefore gets the first right and the second silently wrong, so the
-/// path is resolved segment by segment from `composer/` instead.
-fn packageDir(allocator: std.mem.Allocator, pkg: Manifest) ![]const u8 {
+/// THREE directions occur:
+///
+///   * `../guzzlehttp/guzzle` climbs out to `vendor/guzzlehttp/guzzle`;
+///   * `./installers` sits alongside, at `vendor/composer/installers` —
+///     Composer's own packages land there, so stripping a leading `../` gets
+///     the first right and this one silently wrong;
+///   * `../../web/app/plugins/one` leaves the vendor directory ENTIRELY, which
+///     is what `extra.installer-paths` does. That path cannot be written as
+///     `$vendorDir . '/…'` at all: Composer anchors it at `$baseDir`, and
+///     emitting the vendor anchor produces an autoloader whose every rule for
+///     that package points at a directory that does not exist.
+///
+/// So the path is resolved segment by segment from `composer/`, and the anchor
+/// is chosen by whether the result is still inside the vendor directory.
+fn packageDir(allocator: std.mem.Allocator, pkg: Manifest) !Path {
     if (pkg.install_path.len == 0) {
         // No install-path recorded: Composer's default layout is vendor/<name>.
-        if (pkg.name.len == 0) return "";
-        return std.fmt.allocPrint(allocator, "/{s}", .{pkg.name});
+        if (pkg.name.len == 0) return .{ .anchor = .vendor, .rel = "" };
+        return .{ .anchor = .vendor, .rel = try std.fmt.allocPrint(allocator, "/{s}", .{pkg.name}) };
     }
 
     var segments: std.ArrayList([]const u8) = .empty;
     try segments.append(allocator, "composer");
 
+    // How far above the vendor directory the path climbed. `vendor/composer`
+    // is one level in, so a path that pops past it is outside vendor.
+    var escaped: usize = 0;
+
     var it = std.mem.tokenizeScalar(u8, pkg.install_path, '/');
     while (it.next()) |seg| {
         if (std.mem.eql(u8, seg, ".")) continue;
         if (std.mem.eql(u8, seg, "..")) {
-            if (segments.items.len > 0) _ = segments.pop();
+            if (segments.items.len > 0) {
+                _ = segments.pop();
+            } else {
+                escaped += 1;
+            }
             continue;
         }
         try segments.append(allocator, seg);
@@ -430,7 +540,14 @@ fn packageDir(allocator: std.mem.Allocator, pkg: Manifest) ![]const u8 {
         try out.append(allocator, '/');
         try out.appendSlice(allocator, seg);
     }
-    return out.toOwnedSlice(allocator);
+
+    // Exactly one level out of `vendor/` is the project root, which is the only
+    // case `installer-paths` produces and the only one `$baseDir` names. Two or
+    // more would be above the project entirely — no anchor exists for that, and
+    // Composer does not generate one either, so the vendor anchor is kept and
+    // the path is left visibly wrong rather than silently rewritten.
+    const anchor: Anchor = if (escaped == 1) .base else .vendor;
+    return .{ .anchor = anchor, .rel = try out.toOwnedSlice(allocator) };
 }
 
 fn relPaths(
@@ -536,7 +653,9 @@ fn requires(pkg: Manifest, name: []const u8) bool {
 /// Needed for real ordering, not pedantry — `symfony/polyfill-php73`,
 /// `php80` and `php81` are ordered by the number, and a plain byte compare puts
 /// `php8` after `php73`.
-fn natCaseLess(a: []const u8, b: []const u8) bool {
+/// `strnatcasecmp` ordering, exported because `installed.php` sorts its
+/// `provided` / `replaced` lists with PHP's SORT_NATURAL.
+pub fn natCaseLess(a: []const u8, b: []const u8) bool {
     var i: usize = 0;
     var j: usize = 0;
     while (i < a.len and j < b.len) {
@@ -629,7 +748,21 @@ fn nameAscending(_: void, a: Manifest, b: Manifest) bool {
 /// autoload. The fallback is derived from the root package rather than random so
 /// that a vendor tree with no readable autoload.php still regenerates
 /// reproducibly.
-fn staticSuffix(allocator: std.mem.Allocator, io: Io, vendor_dir: []const u8, base_dir: []const u8, root: Manifest) ![]const u8 {
+fn staticSuffix(
+    allocator: std.mem.Allocator,
+    io: Io,
+    vendor_dir: []const u8,
+    base_dir: []const u8,
+    root: Manifest,
+    configured: ?[]const u8,
+) ![]const u8 {
+    // `config.autoloader-suffix` outranks the file already on disk. That is
+    // Composer's order and it is the whole point of the setting: a project
+    // pins it so two builds of one source tree produce identical class names.
+    if (configured) |s| {
+        if (s.len > 0) return allocator.dupe(u8, s);
+    }
+
     const path = try std.fs.path.join(allocator, &.{ vendor_dir, "autoload.php" });
     if (Dir.cwd().readFileAlloc(io, path, allocator, .limited(1024 * 1024)) catch null) |content| {
         const marker = "ComposerAutoloaderInit";
@@ -641,6 +774,14 @@ fn staticSuffix(allocator: std.mem.Allocator, io: Io, vendor_dir: []const u8, ba
         }
     }
 
+    // Composer's own fallback, in its own order: the LOCK's `content-hash` when
+    // there is a lock, and only then something invented. Composer invents
+    // `bin2hex(random_bytes(16))`; inventing a random value here would make a
+    // freshly installed tree differ from Composer's for no reason and differ
+    // from itself on every run, so the derived value below stands in — it is
+    // reached only by a project with no lock and no existing autoload.php.
+    if (lockContentHash(allocator, io, base_dir)) |hash| return hash;
+
     var digest: [16]u8 = undefined;
     var h = std.crypto.hash.Md5.init(.{});
     h.update(root.name);
@@ -650,6 +791,141 @@ fn staticSuffix(allocator: std.mem.Allocator, io: Io, vendor_dir: []const u8, ba
     return std.fmt.allocPrint(allocator, "{x}", .{&digest});
 }
 
+/// `composer.lock`'s `content-hash`, when it is one.
+///
+/// Composer requires it to match `^[a-f0-9]+$` before using it as a class-name
+/// suffix, because the value ends up interpolated into a PHP identifier — and
+/// a lock is a file anyone can edit.
+fn lockContentHash(allocator: std.mem.Allocator, io: Io, base_dir: []const u8) ?[]const u8 {
+    const path = std.fs.path.join(allocator, &.{ base_dir, "composer.lock" }) catch return null;
+    const body = Dir.cwd().readFileAlloc(io, path, allocator, .limited(64 * 1024 * 1024)) catch return null;
+    const parsed = std.json.parseFromSliceLeaky(std.json.Value, allocator, body, .{}) catch return null;
+    if (parsed != .object) return null;
+
+    const value = parsed.object.get("content-hash") orelse return null;
+    const hash = switch (value) {
+        .string => |v| v,
+        else => return null,
+    };
+    if (hash.len == 0) return null;
+    for (hash) |c| {
+        if (!std.ascii.isDigit(c) and !(c >= 'a' and c <= 'f')) return null;
+    }
+    return hash;
+}
+
+// ── --strict-psr ──────────────────────────────────────────────────────────────
+
+/// One class whose location contradicts the psr rule that covers it.
+pub const PsrViolation = struct {
+    fqcn: []const u8,
+    path: []const u8,
+    /// The prefix whose directory it was found under.
+    prefix: []const u8,
+    /// That prefix's directory, absolute — the second half of Composer's
+    /// `(rule: Acme\ => ./src)`.
+    dir: []const u8 = "",
+};
+
+/// Classes that a psr-4 or psr-0 rule claims but could never load.
+///
+/// `--strict-psr`. The autoloader maps a class name to a path arithmetically,
+/// so a class in the wrong file is not slow to find — it is unfindable. With
+/// `-o` the classmap papers over it, which is worse than the plain failure: it
+/// works in production, where the optimised autoloader is generated, and fails
+/// in development, where it is not.
+///
+/// Reports rather than throws, because the answer is a LIST — a project fixing
+/// this wants every offender, not the first one.
+pub fn strictPsrViolations(
+    allocator: std.mem.Allocator,
+    io: Io,
+    p: Plan,
+    base_dir: []const u8,
+    vendor_dir: []const u8,
+) ![]const PsrViolation {
+    var out: std.ArrayList(PsrViolation) = .empty;
+
+    for (p.psr4) |rule| {
+        for (rule.paths) |dir| {
+            const abs = try absoluteOf(allocator, dir, base_dir, vendor_dir);
+            var found: std.ArrayList(classmap.Found) = .empty;
+            classmap.scanTree(allocator, io, abs, &.{}, &found) catch continue;
+
+            for (found.items) |f| {
+                if (psr4Matches(allocator, rule.prefix, abs, f)) continue;
+                // One directory may be claimed by several prefixes — a package
+                // that maps both `Acme\` and `Acme\Legacy\` at the same root.
+                // A class the OTHER rule can load is loadable, so it is not
+                // reported: the question is whether the autoloader can find it,
+                // not whether this particular rule can.
+                if (try loadableByAnother(allocator, p, base_dir, vendor_dir, rule.prefix, f)) continue;
+                try out.append(allocator, .{ .fqcn = f.fqcn, .path = f.path, .prefix = rule.prefix, .dir = abs });
+            }
+        }
+    }
+
+    return out.toOwnedSlice(allocator);
+}
+
+/// Does `found` sit where psr-4 says a class of that name must?
+///
+/// The rule: strip the prefix from the class name, replace `\` with `/`, append
+/// `.php`, and that is the path under the rule's directory. A class that does
+/// not start with the prefix at all is NOT a violation — a directory may hold
+/// several rules' worth of code, and another rule may well claim it.
+fn psr4Matches(
+    allocator: std.mem.Allocator,
+    prefix: []const u8,
+    dir: []const u8,
+    found: classmap.Found,
+) bool {
+    if (!std.mem.startsWith(u8, found.fqcn, prefix)) return false;
+
+    const rest = found.fqcn[prefix.len..];
+    var want: std.ArrayList(u8) = .empty;
+    want.appendSlice(allocator, dir) catch return true;
+    want.append(allocator, '/') catch return true;
+    for (rest) |c| want.append(allocator, if (c == '\\') '/' else c) catch return true;
+    want.appendSlice(allocator, ".php") catch return true;
+
+    return std.mem.eql(u8, want.items, found.path);
+}
+
+/// Can some OTHER psr-4 rule load this class from where it sits?
+fn loadableByAnother(
+    allocator: std.mem.Allocator,
+    p: Plan,
+    base_dir: []const u8,
+    vendor_dir: []const u8,
+    skip_prefix: []const u8,
+    found: classmap.Found,
+) !bool {
+    for (p.psr4) |rule| {
+        if (std.mem.eql(u8, rule.prefix, skip_prefix)) continue;
+        for (rule.paths) |dir| {
+            const abs = try absoluteOf(allocator, dir, base_dir, vendor_dir);
+            if (psr4Matches(allocator, rule.prefix, abs, found)) return true;
+        }
+    }
+    return false;
+}
+
+/// A generated `Path` back to an absolute one.
+fn absoluteOf(
+    allocator: std.mem.Allocator,
+    p: Path,
+    base_dir: []const u8,
+    vendor_dir: []const u8,
+) ![]const u8 {
+    const anchor_dir = switch (p.anchor) {
+        .base => base_dir,
+        .vendor => vendor_dir,
+    };
+    if (p.rel.len == 0) return anchor_dir;
+    return std.fmt.allocPrint(allocator, "{s}{s}", .{ anchor_dir, p.rel });
+}
+
 // ── rendering ─────────────────────────────────────────────────────────────────
 
 const header_fmt =
@@ -657,12 +933,17 @@ const header_fmt =
     \\
     \\// {s} @generated by Composer
     \\
-    \\$vendorDir = dirname(__DIR__);
-    \\$baseDir = dirname($vendorDir);
+    \\$vendorDir = {s};
+    \\$baseDir = {s};
     \\
     \\return array(
     \\
 ;
+
+/// The four-line preamble every non-static generated file opens with.
+fn appendHeader(allocator: std.mem.Allocator, out: *std.ArrayList(u8), name: []const u8, a: Anchors) !void {
+    try out.print(allocator, header_fmt, .{ name, a.vendor_code, a.base_code });
+}
 
 /// The five generated files, named so a caller can render one at a time.
 pub const Which = enum {
@@ -670,6 +951,7 @@ pub const Which = enum {
     psr0,
     classmap,
     files,
+    include_paths,
     static,
 
     pub fn fileName(self: Which) []const u8 {
@@ -678,8 +960,17 @@ pub const Which = enum {
             .psr0 => "autoload_namespaces.php",
             .classmap => "autoload_classmap.php",
             .files => "autoload_files.php",
+            .include_paths => "include_paths.php",
             .static => "autoload_static.php",
         };
+    }
+
+    /// Written only when the project has entries for it, and DELETED when it
+    /// does not — Composer `unlink`s both, and a stale one is not inert:
+    /// `autoload_real.php` is generated to `require` exactly the files that
+    /// exist, so a leftover describes paths that are no longer in the tree.
+    pub fn conditional(self: Which) bool {
+        return self == .files or self == .include_paths;
     }
 };
 
@@ -689,21 +980,43 @@ pub const Which = enum {
 /// the parity claim in this file's header is actually verified.
 pub fn renderFor(allocator: std.mem.Allocator, p: Plan, which: Which) ![]const u8 {
     return switch (which) {
-        .psr4 => renderPsr(allocator, which.fileName(), p.psr4),
-        .psr0 => renderPsr(allocator, which.fileName(), p.psr0),
-        .classmap => renderClassmap(allocator, p.classes),
-        .files => renderFiles(allocator, p.files),
+        .psr4 => renderPsr(allocator, which.fileName(), p.psr4, p.anchors),
+        .psr0 => renderPsr(allocator, which.fileName(), p.psr0, p.anchors),
+        .classmap => renderClassmap(allocator, p.classes, p.anchors),
+        .files => renderFiles(allocator, p.files, p.anchors),
+        .include_paths => renderIncludePaths(allocator, p.include_paths, p.anchors),
         .static => renderStatic(allocator, p),
     };
 }
 
-/// Write all five files into `<vendor_dir>/composer/`.
+/// Is this file one the project actually has content for?
+fn hasContentFor(p: Plan, which: Which) bool {
+    return switch (which) {
+        .files => p.files.len > 0,
+        .include_paths => p.include_paths.len > 0,
+        else => true,
+    };
+}
+
+/// Write the generated files into `<vendor_dir>/composer/`.
+///
+/// Four of the five are unconditional. `autoload_files.php` is written only
+/// when the project has `autoload.files` entries, and DELETED otherwise —
+/// which is what `AutoloadGenerator` does, and it is not cosmetic: the
+/// companion `autoload_real.php` reads `ComposerStaticInit…::$files`, and a
+/// stale `autoload_files.php` left behind by a previous install describes files
+/// that are no longer in the tree.
 pub fn write(allocator: std.mem.Allocator, io: Io, vendor_dir: []const u8, p: Plan) !void {
     const dir = try std.fs.path.join(allocator, &.{ vendor_dir, "composer" });
 
     inline for (std.meta.fields(Which)) |f| {
         const which: Which = @enumFromInt(f.value);
-        try writeFile(allocator, io, dir, which.fileName(), try renderFor(allocator, p, which));
+        if (which.conditional() and !hasContentFor(p, which)) {
+            const stale = try std.fs.path.join(allocator, &.{ dir, which.fileName() });
+            Dir.cwd().deleteFile(io, stale) catch {};
+        } else {
+            try writeFile(allocator, io, dir, which.fileName(), try renderFor(allocator, p, which));
+        }
     }
 }
 
@@ -713,9 +1026,9 @@ fn writeFile(allocator: std.mem.Allocator, io: Io, dir: []const u8, name: []cons
     try util.writeFileAtomic(io, path, body);
 }
 
-fn renderPsr(allocator: std.mem.Allocator, name: []const u8, rules: []const Psr) ![]const u8 {
+fn renderPsr(allocator: std.mem.Allocator, name: []const u8, rules: []const Psr, anchors: Anchors) ![]const u8 {
     var out: std.ArrayList(u8) = .empty;
-    try out.print(allocator, header_fmt, .{name});
+    try appendHeader(allocator, &out, name, anchors);
 
     for (rules) |rule| {
         try out.appendSlice(allocator, "    '");
@@ -732,9 +1045,9 @@ fn renderPsr(allocator: std.mem.Allocator, name: []const u8, rules: []const Psr)
     return out.toOwnedSlice(allocator);
 }
 
-fn renderClassmap(allocator: std.mem.Allocator, classes: []const ClassEntry) ![]const u8 {
+fn renderClassmap(allocator: std.mem.Allocator, classes: []const ClassEntry, anchors: Anchors) ![]const u8 {
     var out: std.ArrayList(u8) = .empty;
-    try out.print(allocator, header_fmt, .{"autoload_classmap.php"});
+    try appendHeader(allocator, &out, "autoload_classmap.php", anchors);
 
     for (classes) |c| {
         try out.appendSlice(allocator, "    '");
@@ -748,13 +1061,28 @@ fn renderClassmap(allocator: std.mem.Allocator, classes: []const ClassEntry) ![]
     return out.toOwnedSlice(allocator);
 }
 
-fn renderFiles(allocator: std.mem.Allocator, files: []const FileEntry) ![]const u8 {
+fn renderFiles(allocator: std.mem.Allocator, files: []const FileEntry, anchors: Anchors) ![]const u8 {
     var out: std.ArrayList(u8) = .empty;
-    try out.print(allocator, header_fmt, .{"autoload_files.php"});
+    try appendHeader(allocator, &out, "autoload_files.php", anchors);
 
     for (files) |f| {
         try out.print(allocator, "    '{s}' => ", .{f.id});
         try appendDollarPath(allocator, &out, f.path);
+        try out.appendSlice(allocator, ",\n");
+    }
+
+    try out.appendSlice(allocator, ");\n");
+    return out.toOwnedSlice(allocator);
+}
+
+/// `include_paths.php` — a flat list, no keys.
+fn renderIncludePaths(allocator: std.mem.Allocator, paths: []const Path, anchors: Anchors) ![]const u8 {
+    var out: std.ArrayList(u8) = .empty;
+    try appendHeader(allocator, &out, "include_paths.php", anchors);
+
+    for (paths) |p| {
+        try out.appendSlice(allocator, "    ");
+        try appendDollarPath(allocator, &out, p);
         try out.appendSlice(allocator, ",\n");
     }
 
@@ -781,14 +1109,14 @@ fn renderStatic(allocator: std.mem.Allocator, p: Plan) ![]const u8 {
         try out.appendSlice(allocator, "    public static $files = array (\n");
         for (p.files) |f| {
             try out.print(allocator, "        '{s}' => ", .{f.id});
-            try appendDirPath(allocator, &out, f.path);
+            try appendDirPath(allocator, &out, f.path, p.anchors);
             try out.appendSlice(allocator, ",\n");
         }
         try out.appendSlice(allocator, "    );\n\n");
     }
 
-    try renderStaticPsr(allocator, &out, "prefixLengthsPsr4", "prefixDirsPsr4", p.psr4, true);
-    try renderStaticPsr(allocator, &out, "prefixesPsr0", "", p.psr0, false);
+    try renderStaticPsr(allocator, &out, "prefixLengthsPsr4", "prefixDirsPsr4", p.psr4, true, p.anchors);
+    try renderStaticPsr(allocator, &out, "prefixesPsr0", "", p.psr0, false, p.anchors);
 
     if (p.classes.len > 0) {
         try out.appendSlice(allocator, "    public static $classMap = array (\n");
@@ -796,7 +1124,7 @@ fn renderStatic(allocator: std.mem.Allocator, p: Plan) ![]const u8 {
             try out.appendSlice(allocator, "        '");
             try appendPhpSingle(allocator, &out, c.fqcn);
             try out.appendSlice(allocator, "' => ");
-            try appendDirPath(allocator, &out, c.path);
+            try appendDirPath(allocator, &out, c.path, p.anchors);
             try out.appendSlice(allocator, ",\n");
         }
         try out.appendSlice(allocator, "    );\n\n");
@@ -839,6 +1167,7 @@ fn renderStaticPsr(
     dirs_name: []const u8,
     rules: []const Psr,
     with_lengths: bool,
+    anchors: Anchors,
 ) !void {
     if (rules.len == 0) return;
 
@@ -866,7 +1195,7 @@ fn renderStaticPsr(
             try out.appendSlice(allocator, "' =>\n        array (\n");
             for (rule.paths, 0..) |path, n| {
                 try out.print(allocator, "            {d} => ", .{n});
-                try appendDirPath(allocator, out, path);
+                try appendDirPath(allocator, out, path, anchors);
                 try out.appendSlice(allocator, ",\n");
             }
             try out.appendSlice(allocator, "        ),\n");
@@ -888,7 +1217,7 @@ fn renderStaticPsr(
             try out.appendSlice(allocator, "' =>\n            array (\n");
             for (rules[i].paths, 0..) |path, n| {
                 try out.print(allocator, "                {d} => ", .{n});
-                try appendDirPath(allocator, out, path);
+                try appendDirPath(allocator, out, path, anchors);
                 try out.appendSlice(allocator, ",\n");
             }
             try out.appendSlice(allocator, "            ),\n");
@@ -910,10 +1239,10 @@ fn appendDollarPath(allocator: std.mem.Allocator, out: *std.ArrayList(u8), path:
 
 /// `__DIR__ . '/..' . '/x'` — the form autoload_static.php uses, because it is
 /// evaluated from `vendor/composer/` with no variables in scope.
-fn appendDirPath(allocator: std.mem.Allocator, out: *std.ArrayList(u8), path: Path) !void {
+fn appendDirPath(allocator: std.mem.Allocator, out: *std.ArrayList(u8), path: Path, anchors: Anchors) !void {
     try out.appendSlice(allocator, switch (path.anchor) {
-        .vendor => "__DIR__ . '/..' . '",
-        .base => "__DIR__ . '/../..' . '",
+        .vendor => anchors.vendor_static,
+        .base => anchors.base_static,
     });
     try appendPhpSingle(allocator, out, path.rel);
     try out.appendSlice(allocator, "'");
@@ -943,23 +1272,38 @@ test "psr-4 rules render descending, with composer's path spelling" {
     const sorted = try a.dupe(Psr, &rules);
     std.mem.sort(Psr, sorted, {}, prefixDescending);
 
-    const out = try renderPsr(a, "autoload_psr4.php", sorted);
+    const out = try renderPsr(a, "autoload_psr4.php", sorted, .{});
     try testing.expect(std.mem.indexOf(u8, out, "'Zed\\\\' => array($baseDir . '/src'),") != null);
     try testing.expect(std.mem.indexOf(u8, out, "'Acme\\\\' => array($vendorDir . '/acme/lib/src'),") != null);
     // Descending: Zed before Acme.
     try testing.expect(std.mem.indexOf(u8, out, "Zed").? < std.mem.indexOf(u8, out, "Acme").?);
 }
 
-test "install-path is rewritten relative to the vendor dir" {
+test "install-path is rewritten relative to the vendor dir, or to the project" {
     var arena = std.heap.ArenaAllocator.init(testing.allocator);
     defer arena.deinit();
+    const a = arena.allocator();
 
-    const dir = try packageDir(arena.allocator(), .{ .name = "guzzlehttp/guzzle", .install_path = "../guzzlehttp/guzzle" });
-    try testing.expectEqualStrings("/guzzlehttp/guzzle", dir);
+    const ordinary = try packageDir(a, .{ .name = "guzzlehttp/guzzle", .install_path = "../guzzlehttp/guzzle" });
+    try testing.expectEqualStrings("/guzzlehttp/guzzle", ordinary.rel);
+    try testing.expectEqual(Anchor.vendor, ordinary.anchor);
+
+    // Composer's own packages sit INSIDE vendor/composer, and `./x` must not be
+    // read as `vendor/x`.
+    const beside = try packageDir(a, .{ .name = "composer/installers", .install_path = "./installers" });
+    try testing.expectEqualStrings("/composer/installers", beside.rel);
+    try testing.expectEqual(Anchor.vendor, beside.anchor);
+
+    // `extra.installer-paths` leaves vendor/ entirely. Anchored at $vendorDir
+    // this generates rules pointing at a directory that does not exist.
+    const outside = try packageDir(a, .{ .name = "acme/one", .install_path = "../../web/app/plugins/one" });
+    try testing.expectEqualStrings("/web/app/plugins/one", outside.rel);
+    try testing.expectEqual(Anchor.base, outside.anchor);
 
     // No install-path recorded → Composer's default vendor/<name> layout.
-    const fallback = try packageDir(arena.allocator(), .{ .name = "acme/lib" });
-    try testing.expectEqualStrings("/acme/lib", fallback);
+    const fallback = try packageDir(a, .{ .name = "acme/lib" });
+    try testing.expectEqualStrings("/acme/lib", fallback.rel);
+    try testing.expectEqual(Anchor.vendor, fallback.anchor);
 }
 
 test "the most depended-upon package sorts first" {

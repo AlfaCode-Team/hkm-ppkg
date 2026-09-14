@@ -1,0 +1,199 @@
+name: Release
+
+# Build `ppkg` for every platform, prove the binaries install and run, and
+# publish them as a GitHub release.
+#
+# Two ways in:
+#   1. push a `v*` tag          → VERSION comes from the tag name.
+#   2. workflow_call (version)  → VERSION comes from auto-release.yml, so no PAT
+#                                 is needed to chain a release off a merge.
+#
+# The normal path is (2): promote the CHANGELOG heading, bump build.zig.zon,
+# merge to main. See CONTRIBUTING.md, "Releasing".
+"on":
+  push:
+    tags:
+      - "v*"
+  workflow_call:
+    inputs:
+      version:
+        description: "Release version without the leading v (e.g. 0.2.0)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  # The input when called, else the tag name.
+  RELEASE_VERSION: ${{ inputs.version || '' }}
+  # Build exactly the tagged commit. When called from auto-release, the
+  # workflow's own ref is `main`, which may have moved on since the tag.
+  RELEASE_REF: ${{ inputs.version && format('v{0}', inputs.version) || github.ref }}
+
+jobs:
+  # ── Gate: the tag, the CHANGELOG and build.zig.zon must agree ─────────────
+  verify:
+    name: Verify version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: "${{ env.RELEASE_REF }}" }
+      - id: v
+        run: |
+          VERSION="${RELEASE_VERSION:-${GITHUB_REF_NAME#v}}"
+          sh .github/scripts/check-version.sh "$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+  # ── Gate: the full suite, on both hosts ci.yml tests ──────────────────────
+  test:
+    name: test (${{ matrix.os }})
+    needs: verify
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: "${{ env.RELEASE_REF }}" }
+      - id: zig
+        run: echo "version=$(cat .zig-version)" >> "$GITHUB_OUTPUT"
+      - uses: mlugg/setup-zig@v2
+        with: { version: "${{ steps.zig.outputs.version }}" }
+      - run: zig build test --summary all
+
+  # ── Build: every target, cross-compiled from one Linux runner ─────────────
+  build:
+    name: Build archives
+    needs: [verify, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: "${{ env.RELEASE_REF }}" }
+      - id: zig
+        run: echo "version=$(cat .zig-version)" >> "$GITHUB_OUTPUT"
+      - uses: mlugg/setup-zig@v2
+        with: { version: "${{ steps.zig.outputs.version }}" }
+      - name: Package
+        run: bash .github/scripts/package.sh "${{ needs.verify.outputs.version }}" dist
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  # ── Smoke: install each binary a runner can execute natively, and run it ──
+  #
+  # Through the INSTALLERS, from the built archives, with checksum
+  # verification — so what is proven is the path a user takes, not merely that
+  # a file exists. Targets with no native runner (armv7, riscv64, FreeBSD,
+  # Windows on ARM, Intel macOS) are compiled and packaged but not executed.
+  smoke:
+    name: smoke (${{ matrix.asset }})
+    needs: [verify, build]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, asset: linux-x86_64 }
+          - { os: ubuntu-24.04-arm, asset: linux-aarch64 }
+          - { os: macos-latest, asset: macos-aarch64 }
+          - { os: windows-latest, asset: windows-x86_64 }
+    env:
+      VERSION: ${{ needs.verify.outputs.version }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with: { name: dist, path: dist }
+
+      - name: Install with install.sh, then run
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -eu
+          export PPKG_INSTALL_DIR="$RUNNER_TEMP/bin"
+          sh dist/install.sh --archive "dist/ppkg-${{ matrix.asset }}.tar.gz"
+          got="$("$PPKG_INSTALL_DIR/ppkg" --version)"
+          [ "$got" = "ppkg $VERSION" ] || { echo "::error::the binary reports '$got', expected 'ppkg $VERSION'"; exit 1; }
+          mkdir "$RUNNER_TEMP/project" && cd "$RUNNER_TEMP/project"
+          "$PPKG_INSTALL_DIR/ppkg" init --name acme/smoke </dev/null
+          "$PPKG_INSTALL_DIR/ppkg" validate
+
+      - name: Install with install.ps1, then run
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $dir = Join-Path $env:RUNNER_TEMP 'ppkg'
+          ./dist/install.ps1 -Archive "dist/ppkg-${{ matrix.asset }}.zip" -InstallDir $dir
+          $got = & (Join-Path $dir 'ppkg.exe') --version
+          if ($got -ne "ppkg $env:VERSION") { throw "the binary reports '$got', expected 'ppkg $env:VERSION'" }
+          $project = Join-Path $env:RUNNER_TEMP 'project'
+          New-Item -ItemType Directory -Path $project | Out-Null
+          Set-Location $project
+          & (Join-Path $dir 'ppkg.exe') init --name acme/smoke
+          if ($LASTEXITCODE -ne 0) { throw "init exited $LASTEXITCODE" }
+          & (Join-Path $dir 'ppkg.exe') validate
+          if ($LASTEXITCODE -ne 0) { throw "validate exited $LASTEXITCODE" }
+
+  # ── Publish ───────────────────────────────────────────────────────────────
+  release:
+    name: Publish GitHub Release
+    needs: [verify, smoke]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ needs.verify.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7 # CHANGELOG.md at the tagged commit
+        with: { ref: "${{ env.RELEASE_REF }}" }
+      - uses: actions/download-artifact@v8
+        with: { name: dist, path: dist }
+
+      - name: Extract this version's CHANGELOG section
+        id: notes
+        run: |
+          # The block between "## [VERSION]" and the next "## [" heading.
+          awk -v v="$VERSION" '
+            index($0, "## [" v "]") == 1 { grab = 1; next }
+            grab && /^## \[/ { exit }
+            grab { print }
+          ' CHANGELOG.md > release-body.md
+          {
+            echo
+            echo "### Install"
+            echo
+            echo '```sh'
+            echo "# Linux, macOS, FreeBSD"
+            echo "curl -fsSL https://raw.githubusercontent.com/$GITHUB_REPOSITORY/v$VERSION/install.sh | sh -s -- --version v$VERSION"
+            echo '```'
+            echo
+            echo '```powershell'
+            echo "# Windows"
+            echo "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/$GITHUB_REPOSITORY/v$VERSION/install.ps1))) -Version v$VERSION"
+            echo '```'
+            echo
+            echo 'Every archive is listed in `SHA256SUMS`; both installers verify against it.'
+          } >> release-body.md
+
+      - uses: softprops/action-gh-release@v3
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: v${{ env.VERSION }}
+          files: dist/*
+          body_path: release-body.md
+          # Curated section first; GitHub appends "What's Changed" below it.
+          generate_release_notes: true
+          # Created as a DRAFT, then published by the next step. With immutable
+          # releases turned on (as hkm-kernel has them), assets cannot be added
+          # to a PUBLISHED release — publishing first and uploading second
+          # leaves a release with no binaries and no way to attach them.
+          draft: true
+          prerelease: ${{ contains(env.VERSION, '-') }}
+
+      - name: Publish the draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "v$VERSION" --draft=false --repo "$GITHUB_REPOSITORY"
