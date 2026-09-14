@@ -153,6 +153,9 @@ case ":$PATH:" in
   *":$BINDIR:"*) ;;
   *)
     warn "$BINDIR is not on your PATH. Add it — for example:"
+    # $PATH is literal on purpose: this prints a line for the user to paste, and
+    # it must expand in THEIR shell when ~/.profile runs, not in this one now.
+    # shellcheck disable=SC2016
     printf '    echo '\''export PATH="%s:$PATH"'\'' >> ~/.profile\n' "$BINDIR" >&2
     ;;
 esac
