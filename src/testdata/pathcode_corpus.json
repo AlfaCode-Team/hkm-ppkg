@@ -1,0 +1,6658 @@
+[
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/composer/installed.php'",
+        "path": "../composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/composer/installed.php'",
+        "path": "../composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'",
+        "path": "../../"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__))",
+        "path": "../../"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__FILE__",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "__FILE__",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/phpunit'",
+        "path": "./phpunit"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/phpunit'",
+        "path": "./phpunit"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/phpunit'",
+        "path": "phpunit"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/phpunit'",
+        "path": "phpunit"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/composer/installed.php'",
+        "path": "../composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/composer/installed.php'",
+        "path": "../composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'",
+        "path": "../../"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__))",
+        "path": "../../"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/bin'",
+        "path": "../bin"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/bin'",
+        "path": "../bin"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/bin'",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/bin'",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/bin/phpunit'",
+        "path": "../bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/bin/phpunit'",
+        "path": "../bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/binaries",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/autoload.php'",
+        "path": "../vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/autoload.php'",
+        "path": "../vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/vendor/autoload.php'",
+        "path": "vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/vendor/autoload.php'",
+        "path": "vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/composer/installed.php'",
+        "path": "../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/composer/installed.php'",
+        "path": "../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/vendor/composer/installed.php'",
+        "path": "vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/vendor/composer/installed.php'",
+        "path": "vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''",
+        "path": "./"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor'",
+        "path": "../vendor"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor'",
+        "path": "../vendor"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/vendor'",
+        "path": "./vendor"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/vendor'",
+        "path": "./vendor"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/bin'",
+        "path": "../vendor/bin"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/bin'",
+        "path": "../vendor/bin"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/vendor/bin'",
+        "path": "vendor/bin"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/vendor/bin'",
+        "path": "vendor/bin"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/other/vendor/autoload.php'",
+        "path": "../other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/other/vendor/autoload.php'",
+        "path": "../other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/tmp/x/y/z.php'",
+        "path": "../tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/tmp/x/y/z.php'",
+        "path": "../tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/bin/phpunit'",
+        "path": "../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/bin/phpunit'",
+        "path": "../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/vendor/bin/phpunit'",
+        "path": "vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/vendor/bin/phpunit'",
+        "path": "vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/autoload.php'",
+        "path": "../../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/autoload.php'",
+        "path": "../../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/autoload.php'",
+        "path": "../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/autoload.php'",
+        "path": "../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/deps/autoload.php'",
+        "path": "../../../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/deps/autoload.php'",
+        "path": "../../../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/composer/installed.php'",
+        "path": "../../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/composer/installed.php'",
+        "path": "../../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/composer/installed.php'",
+        "path": "../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/composer/installed.php'",
+        "path": "../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/src/Foo.php'",
+        "path": "../../../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/src/Foo.php'",
+        "path": "../../../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'",
+        "path": "../../../"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__)))",
+        "path": "../../../"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'",
+        "path": "../../"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__))",
+        "path": "../../"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor'",
+        "path": "../../../vendor"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor'",
+        "path": "../../../vendor"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor'",
+        "path": "../../vendor"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor'",
+        "path": "../../vendor"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/bin'",
+        "path": "../../../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/bin'",
+        "path": "../../../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/bin'",
+        "path": "../../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/bin'",
+        "path": "../../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/a/b/c/d/e.php'",
+        "path": "../../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/a/b/c/d/e.php'",
+        "path": "../../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/bin/phpunit'",
+        "path": "../../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/bin/phpunit'",
+        "path": "../../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/bin/phpunit'",
+        "path": "../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/bin/phpunit'",
+        "path": "../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/it\\'s/odd.php'",
+        "path": "../../../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/it\\'s/odd.php'",
+        "path": "../../../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/back/slash.php'",
+        "path": "../../../back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/back/slash.php'",
+        "path": "../../../back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/composer/installed.php'",
+        "path": "composer/installed.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__FILE__",
+        "path": "./vendor"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "__FILE__",
+        "path": "./vendor"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/bin'",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/bin'",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/bin'",
+        "path": "bin"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/bin'",
+        "path": "bin"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/other/vendor/autoload.php'",
+        "path": "../other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/other/vendor/autoload.php'",
+        "path": "../other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/tmp/x/y/z.php'",
+        "path": "../tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/tmp/x/y/z.php'",
+        "path": "../tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/autoload.php'",
+        "path": "../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/autoload.php'",
+        "path": "../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/autoload.php'",
+        "path": "../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/autoload.php'",
+        "path": "../vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/autoload.php'",
+        "path": "autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/composer/installed.php'",
+        "path": "../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/composer/installed.php'",
+        "path": "../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/composer/installed.php'",
+        "path": "../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/composer/installed.php'",
+        "path": "../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'",
+        "path": "../../"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__))",
+        "path": "../../"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor'",
+        "path": "../../vendor"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor'",
+        "path": "../../vendor"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor'",
+        "path": "../vendor"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor'",
+        "path": "../vendor"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/bin'",
+        "path": "../../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/bin'",
+        "path": "../../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/bin'",
+        "path": "../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/bin'",
+        "path": "../vendor/bin"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/bin/phpunit'",
+        "path": "../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/bin/phpunit'",
+        "path": "../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/bin/phpunit'",
+        "path": "../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/bin/phpunit'",
+        "path": "../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/lib/vendor",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/vendor/autoload.php'",
+        "path": "vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/vendor/autoload.php'",
+        "path": "vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/vendor/autoload.php'",
+        "path": "vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/vendor/autoload.php'",
+        "path": "vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/lib/vendor/autoload.php'",
+        "path": "lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/deps/autoload.php'",
+        "path": "deps/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/vendor/composer/installed.php'",
+        "path": "vendor/composer/installed.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/vendor/composer/installed.php'",
+        "path": "vendor/composer/installed.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/vendor/composer/installed.php'",
+        "path": "vendor/composer/installed.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/vendor/composer/installed.php'",
+        "path": "vendor/composer/installed.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/src/Foo.php'",
+        "path": "src/Foo.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__FILE__",
+        "path": "./p"
+    },
+    {
+        "from": "/p",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "__FILE__",
+        "path": "./p"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/vendor'",
+        "path": "./vendor"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/vendor'",
+        "path": "./vendor"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/vendor'",
+        "path": "vendor"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/vendor'",
+        "path": "vendor"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/vendor/bin'",
+        "path": "vendor/bin"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/vendor/bin'",
+        "path": "vendor/bin"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/vendor/bin'",
+        "path": "vendor/bin"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/vendor/bin'",
+        "path": "vendor/bin"
+    },
+    {
+        "from": "/p",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/other/vendor/autoload.php'",
+        "path": "../other/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/other/vendor/autoload.php'",
+        "path": "../other/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/other/vendor/autoload.php'",
+        "path": "other/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/other/vendor/autoload.php'",
+        "path": "other/vendor/autoload.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/a/b/c/d/e.php'",
+        "path": "a/b/c/d/e.php"
+    },
+    {
+        "from": "/p",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/tmp/x/y/z.php'",
+        "path": "../tmp/x/y/z.php"
+    },
+    {
+        "from": "/p",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/tmp/x/y/z.php'",
+        "path": "../tmp/x/y/z.php"
+    },
+    {
+        "from": "/p",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/tmp/x/y/z.php'",
+        "path": "tmp/x/y/z.php"
+    },
+    {
+        "from": "/p",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/tmp/x/y/z.php'",
+        "path": "tmp/x/y/z.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/vendor/bin/phpunit'",
+        "path": "vendor/bin/phpunit"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/vendor/bin/phpunit'",
+        "path": "vendor/bin/phpunit"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/vendor/bin/phpunit'",
+        "path": "vendor/bin/phpunit"
+    },
+    {
+        "from": "/p",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/vendor/bin/phpunit'",
+        "path": "vendor/bin/phpunit"
+    },
+    {
+        "from": "/p",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/it\\'s/odd.php'",
+        "path": "it's/odd.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/back/slash.php'",
+        "path": "back/slash.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/vendor/autoload.php'",
+        "path": "../../../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/vendor/autoload.php'",
+        "path": "../../../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/autoload.php'",
+        "path": "../../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/autoload.php'",
+        "path": "../../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/lib/vendor/autoload.php'",
+        "path": "../../../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/lib/vendor/autoload.php'",
+        "path": "../../../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/lib/vendor/autoload.php'",
+        "path": "../../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/lib/vendor/autoload.php'",
+        "path": "../../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/deps/autoload.php'",
+        "path": "../../../../deps/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/deps/autoload.php'",
+        "path": "../../../../deps/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/deps/autoload.php'",
+        "path": "../../../deps/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/deps/autoload.php'",
+        "path": "../../../deps/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/vendor/composer/installed.php'",
+        "path": "../../../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/vendor/composer/installed.php'",
+        "path": "../../../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/composer/installed.php'",
+        "path": "../../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/composer/installed.php'",
+        "path": "../../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/src/Foo.php'",
+        "path": "../../../../src/Foo.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/src/Foo.php'",
+        "path": "../../../../src/Foo.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/src/Foo.php'",
+        "path": "../../../src/Foo.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/src/Foo.php'",
+        "path": "../../../src/Foo.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'",
+        "path": "../../../../"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__))))",
+        "path": "../../../../"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'",
+        "path": "../../../"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__)))",
+        "path": "../../../"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/vendor'",
+        "path": "../../../../vendor"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/vendor'",
+        "path": "../../../../vendor"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor'",
+        "path": "../../../vendor"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor'",
+        "path": "../../../vendor"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/vendor/bin'",
+        "path": "../../../../vendor/bin"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/vendor/bin'",
+        "path": "../../../../vendor/bin"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/bin'",
+        "path": "../../../vendor/bin"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/bin'",
+        "path": "../../../vendor/bin"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/e.php'",
+        "path": "./e.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/e.php'",
+        "path": "./e.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/e.php'",
+        "path": "e.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/e.php'",
+        "path": "e.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/vendor/bin/phpunit'",
+        "path": "../../../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/vendor/bin/phpunit'",
+        "path": "../../../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/vendor/bin/phpunit'",
+        "path": "../../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/vendor/bin/phpunit'",
+        "path": "../../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/it\\'s/odd.php'",
+        "path": "../../../../it's/odd.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/it\\'s/odd.php'",
+        "path": "../../../../it's/odd.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/it\\'s/odd.php'",
+        "path": "../../../it's/odd.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/it\\'s/odd.php'",
+        "path": "../../../it's/odd.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../../../..'.'/back/slash.php'",
+        "path": "../../../../back/slash.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(dirname(dirname(__DIR__)))).'/back/slash.php'",
+        "path": "../../../../back/slash.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/../../..'.'/back/slash.php'",
+        "path": "../../../back/slash.php"
+    },
+    {
+        "from": "/p/a/b/c/d",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(dirname(dirname(__DIR__))).'/back/slash.php'",
+        "path": "../../../back/slash.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    },
+    {
+        "from": "/usr/local/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/deps/autoload.php'",
+        "path": "../../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/deps/autoload.php'",
+        "path": "../deps/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/nikic/php-parser/bin/php-parse'",
+        "path": "../nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/nikic/php-parser/bin/php-parse'",
+        "path": "nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/installed.php'",
+        "path": "./installed.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/installed.php'",
+        "path": "./installed.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/installed.php'",
+        "path": "installed.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/installed.php'",
+        "path": "installed.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'",
+        "path": "../../"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__))",
+        "path": "../../"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__",
+        "path": "./"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/bin'",
+        "path": "../bin"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/bin'",
+        "path": "../bin"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/bin'",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/bin'",
+        "path": "./bin"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/bin/phpunit'",
+        "path": "../bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/bin/phpunit'",
+        "path": "../bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/bin/phpunit'",
+        "path": "bin/phpunit"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/vendor/composer",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/vendor/autoload.php'",
+        "path": "p/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/vendor/autoload.php'",
+        "path": "p/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/vendor/autoload.php'",
+        "path": "p/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/vendor/autoload.php'",
+        "path": "p/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/lib/vendor/autoload.php'",
+        "path": "p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/lib/vendor/autoload.php'",
+        "path": "p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/lib/vendor/autoload.php'",
+        "path": "p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/lib/vendor/autoload.php'",
+        "path": "p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/deps/autoload.php'",
+        "path": "p/deps/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/deps/autoload.php'",
+        "path": "p/deps/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/deps/autoload.php'",
+        "path": "p/deps/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/deps/autoload.php'",
+        "path": "p/deps/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/vendor/composer/installed.php'",
+        "path": "p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/vendor/composer/installed.php'",
+        "path": "p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/vendor/composer/installed.php'",
+        "path": "p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/vendor/composer/installed.php'",
+        "path": "p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/src/Foo.php'",
+        "path": "p/src/Foo.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/src/Foo.php'",
+        "path": "p/src/Foo.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/src/Foo.php'",
+        "path": "p/src/Foo.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/src/Foo.php'",
+        "path": "p/src/Foo.php"
+    },
+    {
+        "from": "/",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p'",
+        "path": "./p"
+    },
+    {
+        "from": "/",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p'",
+        "path": "./p"
+    },
+    {
+        "from": "/",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p'",
+        "path": "./p"
+    },
+    {
+        "from": "/",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p'",
+        "path": "./p"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/vendor'",
+        "path": "p/vendor"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/vendor'",
+        "path": "p/vendor"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/vendor'",
+        "path": "p/vendor"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/vendor'",
+        "path": "p/vendor"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/vendor/bin'",
+        "path": "p/vendor/bin"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/vendor/bin'",
+        "path": "p/vendor/bin"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/vendor/bin'",
+        "path": "p/vendor/bin"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/vendor/bin'",
+        "path": "p/vendor/bin"
+    },
+    {
+        "from": "/",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/other/vendor/autoload.php'",
+        "path": "other/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/other/vendor/autoload.php'",
+        "path": "other/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/other/vendor/autoload.php'",
+        "path": "other/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/other/vendor/autoload.php'",
+        "path": "other/vendor/autoload.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/a/b/c/d/e.php'",
+        "path": "p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/a/b/c/d/e.php'",
+        "path": "p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/a/b/c/d/e.php'",
+        "path": "p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/a/b/c/d/e.php'",
+        "path": "p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/tmp/x/y/z.php'",
+        "path": "tmp/x/y/z.php"
+    },
+    {
+        "from": "/",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/tmp/x/y/z.php'",
+        "path": "tmp/x/y/z.php"
+    },
+    {
+        "from": "/",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/tmp/x/y/z.php'",
+        "path": "tmp/x/y/z.php"
+    },
+    {
+        "from": "/",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/tmp/x/y/z.php'",
+        "path": "tmp/x/y/z.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/vendor/bin/phpunit'",
+        "path": "p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/vendor/bin/phpunit'",
+        "path": "p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/vendor/bin/phpunit'",
+        "path": "p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/vendor/bin/phpunit'",
+        "path": "p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/it\\'s/odd.php'",
+        "path": "p/it's/odd.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/it\\'s/odd.php'",
+        "path": "p/it's/odd.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/it\\'s/odd.php'",
+        "path": "p/it's/odd.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/it\\'s/odd.php'",
+        "path": "p/it's/odd.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/p/back/slash.php'",
+        "path": "p/back/slash.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/p/back/slash.php'",
+        "path": "p/back/slash.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/p/back/slash.php'",
+        "path": "p/back/slash.php"
+    },
+    {
+        "from": "/",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/p/back/slash.php'",
+        "path": "p/back/slash.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/autoload.php'",
+        "path": "../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/autoload.php'",
+        "path": "../../vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/autoload.php'",
+        "path": "../vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/autoload.php'",
+        "path": "../vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/autoload.php'",
+        "path": "../../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/autoload.php'",
+        "path": "../lib/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(__DIR__).'/autoload.php'",
+        "path": "../autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . ''.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__.'/autoload.php'",
+        "path": "./autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "../lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/composer/installed.php'",
+        "path": "../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/composer/installed.php'",
+        "path": "../../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/composer/installed.php'",
+        "path": "../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/composer/installed.php'",
+        "path": "../vendor/composer/installed.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/src/Foo.php'",
+        "path": "../../src/Foo.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/src/Foo.php'",
+        "path": "../src/Foo.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'",
+        "path": "../../"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__))",
+        "path": "../../"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'",
+        "path": "../"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__)",
+        "path": "../"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor'",
+        "path": "../../vendor"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor'",
+        "path": "../../vendor"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor'",
+        "path": "../vendor"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor'",
+        "path": "../vendor"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/bin'",
+        "path": "../../vendor/bin"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/bin'",
+        "path": "../../vendor/bin"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/bin'",
+        "path": "../vendor/bin"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/bin'",
+        "path": "../vendor/bin"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/a/b/c/d/e.php'",
+        "path": "../../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/a/b/c/d/e.php'",
+        "path": "../a/b/c/d/e.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "'/tmp/x/y/z.php'",
+        "path": "/tmp/x/y/z.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/vendor/bin/phpunit'",
+        "path": "../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/vendor/bin/phpunit'",
+        "path": "../../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/vendor/bin/phpunit'",
+        "path": "../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/vendor/bin/phpunit'",
+        "path": "../vendor/bin/phpunit"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/it\\'s/odd.php'",
+        "path": "../../it's/odd.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/it\\'s/odd.php'",
+        "path": "../it's/odd.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/../..'.'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "dirname(dirname(__DIR__)).'/back/slash.php'",
+        "path": "../../back/slash.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/..'.'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/p/deps/bin",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "dirname(__DIR__).'/back/slash.php'",
+        "path": "../back/slash.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/autoload.php'",
+        "path": "/p/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/lib/vendor/autoload.php'",
+        "path": "/p/lib/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/deps/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/deps/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/deps/autoload.php'",
+        "path": "/p/deps/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": true,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": true,
+        "static": false,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": true,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/lib/vendor/nikic/php-parser/bin/php-parse",
+        "directories": false,
+        "static": false,
+        "code": "'/p/lib/vendor/nikic/php-parser/bin/php-parse'",
+        "path": "/p/lib/vendor/nikic/php-parser/bin/php-parse"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/composer/installed.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/composer/installed.php'",
+        "path": "/p/vendor/composer/installed.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/src/Foo.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/src/Foo.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/src/Foo.php'",
+        "path": "/p/src/Foo.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p",
+        "directories": true,
+        "static": true,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p",
+        "directories": true,
+        "static": false,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p",
+        "directories": false,
+        "static": true,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p",
+        "directories": false,
+        "static": false,
+        "code": "'/p'",
+        "path": "/p"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor'",
+        "path": "/p/vendor"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/bin'",
+        "path": "/p/vendor/bin"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/other/vendor/autoload.php",
+        "directories": true,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": true,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/other/vendor/autoload.php",
+        "directories": false,
+        "static": false,
+        "code": "'/other/vendor/autoload.php'",
+        "path": "/other/vendor/autoload.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/a/b/c/d/e.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/a/b/c/d/e.php'",
+        "path": "/p/a/b/c/d/e.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": true,
+        "code": "__DIR__ . '/z.php'",
+        "path": "./z.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/tmp/x/y/z.php",
+        "directories": true,
+        "static": false,
+        "code": "__DIR__ . '/z.php'",
+        "path": "./z.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": true,
+        "code": "__DIR__ . '/z.php'",
+        "path": "z.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/tmp/x/y/z.php",
+        "directories": false,
+        "static": false,
+        "code": "__DIR__ . '/z.php'",
+        "path": "z.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": true,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": true,
+        "static": false,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": true,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/vendor/bin/phpunit",
+        "directories": false,
+        "static": false,
+        "code": "'/p/vendor/bin/phpunit'",
+        "path": "/p/vendor/bin/phpunit"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/it's/odd.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/it's/odd.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/it\\'s/odd.php'",
+        "path": "/p/it's/odd.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": true,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/back\\slash.php",
+        "directories": true,
+        "static": false,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": true,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    },
+    {
+        "from": "/tmp/x/y",
+        "to": "/p/back\\slash.php",
+        "directories": false,
+        "static": false,
+        "code": "'/p/back/slash.php'",
+        "path": "/p/back/slash.php"
+    }
+]

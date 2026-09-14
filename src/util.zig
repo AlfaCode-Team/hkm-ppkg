@@ -43,6 +43,26 @@ pub fn writeFileAtomic(io: Io, path: []const u8, data: []const u8) !void {
     };
 }
 
+/// Write only if the file's content would change; report whether it did.
+///
+/// Composer's `Filesystem::filePutContentsIfModified`, and it is not an
+/// optimisation. Rewriting a byte-identical `autoload_static.php` bumps its
+/// mtime, which invalidates the opcache entry for a file whose contents did
+/// not move — and every build system that decides what to rebuild by stat'ing
+/// a tree sees a change that did not happen.
+pub fn writeFileIfModified(
+    allocator: std.mem.Allocator,
+    io: Io,
+    path: []const u8,
+    data: []const u8,
+) !bool {
+    if (Dir.cwd().readFileAlloc(io, path, allocator, .limited(64 * 1024 * 1024)) catch null) |existing| {
+        if (std.mem.eql(u8, existing, data)) return false;
+    }
+    try writeFileAtomic(io, path, data);
+    return true;
+}
+
 /// Make a path executable (0755). Best-effort, and a no-op on Windows: a
 /// `vendor/bin` proxy that could not be chmod'd is worth reporting at the point
 /// it fails to run, not worth failing an otherwise complete install.
@@ -92,6 +112,20 @@ pub fn absPath(allocator: std.mem.Allocator, env: *EnvMap, raw: []const u8) ![]c
     if (pwd.len == 0) return path;
     if (path.len == 0 or std.mem.eql(u8, path, ".")) return pwd;
     return std.fmt.allocPrint(allocator, "{s}/{s}", .{ pwd, path });
+}
+
+/// Whether an environment variable is set to something meaning "yes".
+///
+/// Accepts 1 / true / yes / on, case-insensitively. Anything else — unset, an
+/// empty value, or "0" — is false. One definition, so a toggle cannot read as
+/// enabled to one part of the package and disabled to another.
+pub fn envIsTruthyIn(env: *EnvMap, key: []const u8) bool {
+    const raw = env.get(key) orelse return false;
+    const v = std.mem.trim(u8, raw, " \t\r\n");
+    for ([_][]const u8{ "1", "true", "yes", "on" }) |t| {
+        if (std.ascii.eqlIgnoreCase(v, t)) return true;
+    }
+    return false;
 }
 
 // ── probes ────────────────────────────────────────────────────────────────────
@@ -162,4 +196,33 @@ test "joinList renders an empty list as an empty string" {
     const three = try joinList(a, &.{ "x", "y", "z" });
     defer a.free(three);
     try testing.expectEqualStrings("x, y, z", three);
+}
+
+/// A unix timestamp as the lock spells a date: RFC 3339, always in UTC.
+///
+/// Composer builds the `DateTimeImmutable` with an explicit UTC zone, so the
+/// offset in a lock is `+00:00` regardless of where the commit was authored or
+/// which machine is writing the lock. Formatting in local time produced a lock
+/// that differed from Composer's by exactly the writer's offset — the kind of
+/// difference that shows up as a spurious diff on a colleague's machine.
+pub fn utcRfc3339(allocator: std.mem.Allocator, epoch: i64) ![]const u8 {
+    const day_seconds = @rem(epoch, std.time.s_per_day);
+    const days = @divFloor(epoch, std.time.s_per_day);
+    const secs: u17 = @intCast(if (day_seconds < 0) day_seconds + std.time.s_per_day else day_seconds);
+    const epoch_day: std.time.epoch.EpochDay = .{
+        .day = @intCast(if (day_seconds < 0) days - 1 else days),
+    };
+
+    const year_day = epoch_day.calculateYearDay();
+    const month_day = year_day.calculateMonthDay();
+    const day_secs: std.time.epoch.DaySeconds = .{ .secs = secs };
+
+    return std.fmt.allocPrint(allocator, "{d:0>4}-{d:0>2}-{d:0>2}T{d:0>2}:{d:0>2}:{d:0>2}+00:00", .{
+        year_day.year,
+        month_day.month.numeric(),
+        month_day.day_index + 1,
+        day_secs.getHoursIntoDay(),
+        day_secs.getMinutesIntoHour(),
+        day_secs.getSecondsIntoMinute(),
+    });
 }

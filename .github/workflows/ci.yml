@@ -15,6 +15,13 @@ concurrency:
 permissions:
   contents: read
 
+# ── JOB NAMES ARE LOAD-BEARING ───────────────────────────────────────────────
+# `test (ubuntu-latest)`, `test (macos-latest)` and `cross-compile` are the
+# REQUIRED status checks on `main` (.github/scripts/protect-main.sh), and
+# protection is enforced for admins too. Rename a job and every pull request
+# waits forever for a check nothing reports, with no one able to override it.
+# A rename must update protect-main.sh in the same change, applied after merge.
+
 jobs:
   test:
     name: test (${{ matrix.os }})
@@ -42,32 +49,45 @@ jobs:
           version: ${{ steps.zig.outputs.version }}
 
       - name: Check formatting
-        run: zig fmt --check build.zig src
+        run: zig fmt --check build.zig src app
 
       - name: Test
-        # Includes the 5881-row differential corpus recorded from Composer's own
-        # Semver. If this suite is green and the corpus was not regenerated, the
-        # constraint algebra still agrees with Composer.
+        # Includes the differential corpora recorded from Composer itself. If
+        # this suite is green and no corpus was regenerated, the behaviour
+        # still agrees with Composer.
         run: zig build test --summary all
 
-      # `zig build` alone compiles nothing here — the package installs no
-      # artifact — so the compile is asked for explicitly.
-      - name: Compile
-        run: zig build check
+      # The binary a release ships, built and actually RUN — a unit suite can
+      # be green while the executable fails at startup.
+      - name: Build and run ppkg
+        run: |
+          zig build
+          ./zig-out/bin/ppkg --version
+          ./zig-out/bin/ppkg about
+          dir="$(mktemp -d)"
+          (cd "$dir" && "$GITHUB_WORKSPACE/zig-out/bin/ppkg" init --name acme/ci </dev/null \
+                     && "$GITHUB_WORKSPACE/zig-out/bin/ppkg" validate)
 
-  # The package must build for every target the launcher that consumes it ships
-  # for. A compile error behind an `if (builtin.os.tag == .windows)` branch is
-  # invisible on a native build and breaks a release instead.
+      - name: Lint the release scripts
+        if: runner.os == 'Linux'
+        # shellcheck ships on the ubuntu image. The installers run on machines
+        # nobody here controls, as `curl | sh`; a quoting bug there is a bug
+        # on somebody else's computer.
+        run: shellcheck install.sh .github/scripts/*.sh
+
+  # Every target a release ships, compiled on every pull request — from the
+  # SAME list the release packages (.github/targets.txt), so a platform cannot
+  # be released without having been compiled here first. A compile error behind
+  # an `if (builtin.os.tag == .windows)` branch is invisible on a native build.
+  #
+  # Debug, compile-only: the release builds ReleaseSafe, but optimisation does
+  # not change what compiles, and it is most of the wall time.
   cross:
     name: cross-compile
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
 
-      # The pin is a RELEASED Zig, not a dev build, so it stays fetchable and a
-      # fork PR needs no repository configuration to be green. The kernel that
-      # consumes this package pins a dev build of its own; that is its concern,
-      # and `minimum_zig_version` in build.zig.zon is the contract between them.
       - name: Read the pinned Zig version
         id: zig
         run: echo "version=$(cat .zig-version)" >> "$GITHUB_OUTPUT"
@@ -76,14 +96,10 @@ jobs:
         with:
           version: ${{ steps.zig.outputs.version }}
 
-      - name: Build for every shipped target
+      - name: Compile for every shipped target
         run: |
           set -eu
-          for t in \
-            x86_64-linux-gnu aarch64-linux-gnu \
-            x86_64-macos aarch64-macos \
-            x86_64-windows
-          do
-            echo "── $t"
-            zig build check -Dtarget="$t" --release=safe
+          grep -Ev '^[[:space:]]*(#|$)' .github/targets.txt | while read -r target name cpu; do
+            echo "── $name ($target${cpu:+, cpu $cpu})"
+            zig build check -Dtarget="$target" ${cpu:+-Dcpu="$cpu"}
           done

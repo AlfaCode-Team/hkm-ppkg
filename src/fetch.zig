@@ -21,6 +21,7 @@
 
 const std = @import("std");
 const util = @import("util.zig");
+const auth = @import("auth.zig");
 
 const Io = std.Io;
 const Dir = std.Io.Dir;
@@ -30,6 +31,12 @@ pub const Error = error{
     DownloadFailed,
     ChecksumMismatch,
     NoCacheDir,
+    NoChecksum,
+    /// Plain HTTP, with `config.secure-http` on. Its own error rather than a
+    /// download failure: "the network is down" and "this project forbids
+    /// fetching code over an unauthenticated channel" send a reader to two
+    /// completely different places.
+    InsecureUrl,
 };
 
 pub const Result = struct {
@@ -38,7 +45,100 @@ pub const Result = struct {
     /// True when it was already cached and no request was made.
     cached: bool,
     bytes: usize,
+    /// Downloaded with NO checksum to check it against.
+    ///
+    /// Not an error — Composer behaves the same way, and GitHub publishes no
+    /// digest for a generated zipball, so refusing would refuse every `vcs`
+    /// package. But it was silent, and "some of this tree arrived unverified"
+    /// is a fact an operator is entitled to know before they deploy it.
+    unverified: bool = false,
 };
+
+/// Refuse a dist that carries no checksum, rather than reporting it.
+///
+/// Off by default because it would refuse every GitHub `vcs` package, which is
+/// most of what this tool installs. On, it is the switch for a build that is
+/// not allowed to ship a byte nobody vouched for.
+pub var require_checksums: bool = false;
+
+/// `--no-cache` — never read a cached archive, and never write one.
+///
+/// Composer's flag, and it means both halves. Reading only would still leave
+/// the run writing entries a caller has just said they do not want kept; the
+/// case for it is a build container whose cache directory is somebody else's
+/// and must come out unchanged.
+pub var bypass_cache: bool = false;
+
+/// `config.secure-http` — refuse plain HTTP.
+///
+/// ON by default, as Composer has it. A package fetched over http is a package
+/// any host on the path may replace, and this one is about to be executed.
+/// Turning it off is a decision an operator makes for a specific private
+/// mirror; it is not a default anything should ship with.
+pub var secure_http: bool = true;
+
+/// `config.cafile` — verify against this CA bundle rather than the system's.
+pub var ca_file: ?[]const u8 = null;
+/// `config.capath` — a directory of CA certificates.
+pub var ca_path: ?[]const u8 = null;
+/// `config.cache-dir`, when the project or the machine set one.
+pub var configured_cache_dir: ?[]const u8 = null;
+
+/// `config.process-timeout` — seconds a spawned command may run.
+///
+/// Enforced on the ONE spawned process this module owns: `curl`, via
+/// `--max-time`. Scripts and the VCS tools are spawned elsewhere and are not
+/// bounded by it; `compat` says so rather than leaving a project to assume a
+/// setting it configured is in force everywhere.
+pub var process_timeout: u32 = 300;
+
+/// `config.disable-tls` — do not verify certificates.
+///
+/// Separate from `secure_http` because they are different retreats: one drops
+/// to plaintext, the other keeps the tunnel and stops checking who is at the
+/// other end. Both are reported by `diagnose` when set.
+pub var disable_tls: bool = false;
+
+/// Apply the merged `config` block to this module's transport settings.
+///
+/// Called by each command once, from the settings it loaded. A module-level
+/// variable rather than a parameter because the download path is reached from
+/// a worker pool whose functions take a fixed context — and because these are
+/// process-wide facts about how this machine talks to the network, not facts
+/// about one request.
+pub fn applySettings(
+    secure: bool,
+    cafile: ?[]const u8,
+    capath: ?[]const u8,
+    no_tls: bool,
+    cache_dir: ?[]const u8,
+    timeout: u32,
+) void {
+    secure_http = secure;
+    ca_file = cafile;
+    ca_path = capath;
+    disable_tls = no_tls;
+    configured_cache_dir = cache_dir;
+    process_timeout = timeout;
+}
+
+/// Is this URL allowed by `secure-http`?
+///
+/// Composer permits plain HTTP to localhost regardless, because a loopback
+/// address cannot be intercepted by a third party on the path — the one case
+/// where the rule protects nothing and blocks a legitimate local mirror.
+pub fn allowedUrl(url: []const u8) bool {
+    if (!std.mem.startsWith(u8, url, "http://")) return true;
+    if (!secure_http) return true;
+
+    const rest = url["http://".len..];
+    const host_end = std.mem.indexOfAny(u8, rest, ":/") orelse rest.len;
+    const host = rest[0..host_end];
+    return std.mem.eql(u8, host, "localhost") or
+        std.mem.eql(u8, host, "127.0.0.1") or
+        std.mem.eql(u8, host, "[::1]") or
+        std.mem.endsWith(u8, host, ".localhost");
+}
 
 /// Where downloaded archives are kept.
 ///
@@ -47,6 +147,12 @@ pub const Result = struct {
 /// install down, not stop it.
 pub fn cacheRoot(allocator: std.mem.Allocator, env: *EnvMap, fallback: []const u8) ![]const u8 {
     if (env.get("HKM_PKG_CACHE")) |v| {
+        if (v.len > 0) return allocator.dupe(u8, util.trimSlash(v));
+    }
+    // `config.cache-dir`, and `COMPOSER_CACHE_DIR` through it. Below the
+    // tool's own variable and above the platform default, which is where
+    // Composer puts it too.
+    if (configured_cache_dir) |v| {
         if (v.len > 0) return allocator.dupe(u8, util.trimSlash(v));
     }
     if (env.get("HOME")) |home| {
@@ -81,42 +187,237 @@ pub fn intoCache(
 
     const path = try std.fs.path.join(allocator, &.{ dir, try std.fmt.allocPrint(allocator, "{s}.zip", .{key}) });
 
-    if (util.fileExists(io, path)) {
+    if (!bypass_cache and util.fileExists(io, path)) {
         const size = fileSize(io, path) orelse 0;
+        // A cached entry is not re-reported as unverified: it is keyed by the
+        // commit sha or the checksum, so whatever was true when it was written
+        // is still true, and counting it again would make the number grow with
+        // re-runs rather than with risk.
         if (size > 0) return .{ .path = path, .cached = true, .bytes = size };
     }
+
+    if (expected_sha1.len == 0 and require_checksums) return Error.NoChecksum;
 
     const body = try download(allocator, io, url);
     if (expected_sha1.len > 0) try verifySha1(body, expected_sha1);
 
     try util.writeFileAtomic(io, path, body);
-    return .{ .path = path, .cached = false, .bytes = body.len };
+    return .{
+        .path = path,
+        .cached = false,
+        .bytes = body.len,
+        .unverified = expected_sha1.len == 0,
+    };
 }
 
+/// Credentials for private hosts, loaded once before any work begins.
+///
+/// A global rather than a parameter because every download in this file may run
+/// on one of `max_workers` threads, and threading a store through the worker
+/// queue would buy nothing: it is written once by the host at startup and only
+/// ever read afterwards. `install` and `resolve` set it; nothing else writes it.
+pub var credentials: auth.Store = .{};
+
 /// GET `url`, following redirects, returning the body.
+///
+/// ## Why the redirects are followed by hand
+///
+/// `std.http.Client` has a `privileged_headers` field documented as "stripped
+/// when following a redirect to a different domain", which is exactly the
+/// protection a credential needs. It does not work: in 0.16 the send path emits
+/// `extra_headers` only, and `privileged_headers` are validated, stored, and
+/// cleared on a cross-domain redirect without ever being written to the wire.
+/// A credential put there is silently dropped on every request — which is how
+/// this was found, by a local server that refused a request the tool believed
+/// it had authenticated.
+///
+/// So the credential goes in `extra_headers`, where it is actually sent, and
+/// the redirect chain is walked here. That turns out to be the better rule
+/// anyway: the credential is looked up FRESH for each hop's URL, so it can
+/// never travel to a host the operator did not configure, and a hop into a
+/// host that has its own credential gets that one. std's parent-domain
+/// heuristic would have sent a github.com token to any `*.github.com`.
 pub fn download(allocator: std.mem.Allocator, io: Io, url: []const u8) ![]u8 {
+    // Refused before a socket is opened, not after: the point of the check is
+    // that the bytes never arrive.
+    if (!allowedUrl(url)) return Error.InsecureUrl;
+
+    // Mutual TLS is not something `std.crypto.tls.Client` can do — its
+    // `Options` has no client-certificate field at all — so a host configured
+    // with one is fetched through `curl`, which does. The same applies to a
+    // custom CA bundle and to `disable-tls`: std's client verifies against a
+    // bundle it loads itself, with no hook for either. Confined to exactly the
+    // hosts and settings that need it; everything else takes the ordinary path.
+    if (credentials.clientCertificate(url)) |cert| {
+        return curlFetch(allocator, io, url, cert);
+    }
+    if (ca_file != null or ca_path != null or disable_tls) {
+        return curlFetch(allocator, io, url, null);
+    }
+
     var client: std.http.Client = .{ .allocator = allocator, .io = io };
     defer client.deinit();
 
-    var body: std.Io.Writer.Allocating = .init(allocator);
-    defer body.deinit();
+    var target = url;
+    var hops: usize = 0;
+    // GitHub's zipball endpoint redirects to codeload and codeload may redirect
+    // again; five is what the previous behaviour allowed and what a dist URL
+    // has ever needed.
+    while (hops < 5) : (hops += 1) {
+        var body: std.Io.Writer.Allocating = .init(allocator);
+        defer body.deinit();
 
-    const result = client.fetch(.{
-        .location = .{ .url = url },
-        .response_writer = &body.writer,
-        // GitHub's zipball endpoint redirects to codeload; a client that does
-        // not follow redirects downloads an empty body and reports success.
-        .redirect_behavior = @enumFromInt(5),
-        .extra_headers = &.{
-            .{ .name = "user-agent", .value = "hkm-pkg" },
-            .{ .name = "accept", .value = "*/*" },
-        },
+        var headers: std.ArrayList(std.http.Header) = .empty;
+        try headers.append(allocator, .{ .name = "user-agent", .value = "hkm-pkg" });
+        try headers.append(allocator, .{ .name = "accept", .value = "*/*" });
+        for (credentials.headersFor(allocator, target)) |h| {
+            try headers.append(allocator, .{ .name = h.name, .value = h.value });
+        }
+
+        const result = client.fetch(.{
+            .location = .{ .url = target },
+            .response_writer = &body.writer,
+            // Handled here instead — see above.
+            .redirect_behavior = .unhandled,
+            .extra_headers = headers.items,
+        }) catch return Error.DownloadFailed;
+
+        if (result.status.class() == .redirect) {
+            // `fetch` discards the head, so the hop target comes from a second
+            // request issued with the same rules. Cheap: a redirect body is
+            // empty, and this only happens on the dist path.
+            target = try redirectTarget(allocator, io, &client, target, headers.items) orelse
+                return Error.DownloadFailed;
+            continue;
+        }
+
+        if (result.status != .ok) return Error.DownloadFailed;
+        return allocator.dupe(u8, body.written());
+    }
+    return Error.DownloadFailed;
+}
+
+/// The absolute URL a redirect points at.
+fn redirectTarget(
+    allocator: std.mem.Allocator,
+    io: Io,
+    client: *std.http.Client,
+    from: []const u8,
+    headers: []const std.http.Header,
+) !?[]const u8 {
+    _ = io;
+    var req = client.request(.GET, std.Uri.parse(from) catch return null, .{
+        .redirect_behavior = .unhandled,
+        .extra_headers = headers,
+    }) catch return null;
+    defer req.deinit();
+
+    req.sendBodiless() catch return null;
+    const response = req.receiveHead(&.{}) catch return null;
+    const location = response.head.location orelse return null;
+
+    // A relative Location is legal and common. Resolving it against the current
+    // URL is what keeps the host — and therefore the credential lookup —
+    // correct on the next hop.
+    if (std.mem.indexOf(u8, location, "://") != null) return try allocator.dupe(u8, location);
+
+    const base = std.Uri.parse(from) catch return null;
+    const scheme = base.scheme;
+    const host = switch (base.host orelse return null) {
+        .raw => |h| h,
+        .percent_encoded => |h| h,
+    };
+    if (location.len > 0 and location[0] == '/') {
+        return try std.fmt.allocPrint(allocator, "{s}://{s}{s}", .{ scheme, host, location });
+    }
+    return try std.fmt.allocPrint(allocator, "{s}://{s}/{s}", .{ scheme, host, location });
+}
+
+/// GET through `curl`, for a host that requires a client certificate.
+///
+/// The one request path that is not `std.http.Client`. It exists because Zig's
+/// TLS client cannot present a certificate, and the alternative to shelling out
+/// is telling an operator with a perfectly ordinary mTLS repository that their
+/// setup is unsupported.
+///
+/// `--fail-with-body` rather than `--fail`: an HTTP error still exits non-zero,
+/// so the caller sees a failure, but the body comes back too, which is where a
+/// server puts the reason it refused.
+fn curlFetch(
+    allocator: std.mem.Allocator,
+    io: Io,
+    url: []const u8,
+    cert: ?auth.Credential,
+) ![]u8 {
+    var argv: std.ArrayList([]const u8) = .empty;
+    try argv.appendSlice(allocator, &.{
+        "curl", "--silent", "--show-error", "--location", "--user-agent", "hkm-pkg",
+    });
+    if (cert) |c| {
+        try argv.appendSlice(allocator, &.{ "--cert", c.cert });
+        if (c.key.len > 0) try argv.appendSlice(allocator, &.{ "--key", c.key });
+    }
+    if (ca_file) |f| try argv.appendSlice(allocator, &.{ "--cacert", f });
+    if (ca_path) |d| try argv.appendSlice(allocator, &.{ "--capath", d });
+    // `--insecure` is what `disable-tls` asks for and it is spelled out here
+    // rather than hidden behind a helper, because a reader auditing this file
+    // should meet the words "do not verify" at the point it happens.
+    if (disable_tls) try argv.append(allocator, "--insecure");
+    if (process_timeout > 0) {
+        try argv.appendSlice(allocator, &.{
+            "--max-time",
+            try std.fmt.allocPrint(allocator, "{d}", .{process_timeout}),
+        });
+    }
+
+    // A credential still has to reach a request that curl is making — the
+    // header path below is skipped entirely when std's client is not used.
+    for (credentials.headersFor(allocator, url)) |h| {
+        try argv.appendSlice(allocator, &.{
+            "--header",
+            try std.fmt.allocPrint(allocator, "{s}: {s}", .{ h.name, h.value }),
+        });
+    }
+    // Via stdin, not argv: an argument is visible in `ps` to every user on the
+    // machine, and a key passphrase is exactly the thing that must not be.
+    const passphrase: []const u8 = if (cert) |c| c.passphrase else "";
+    if (passphrase.len > 0) try argv.appendSlice(allocator, &.{ "--pass", "-" });
+    try argv.append(allocator, url);
+
+    var child = std.process.spawn(io, .{
+        .argv = argv.items,
+        .stdin = if (passphrase.len > 0) .pipe else .ignore,
+        .stdout = .pipe,
+        .stderr = .ignore,
     }) catch return Error.DownloadFailed;
 
-    if (result.status != .ok) return Error.DownloadFailed;
+    if (child.stdin) |f| {
+        var buf: [256]u8 = undefined;
+        var writer = f.writer(io, &buf);
+        writer.interface.writeAll(passphrase) catch {};
+        writer.interface.flush() catch {};
+        f.close(io);
+        child.stdin = null;
+    }
 
-    const owned = try allocator.dupe(u8, body.written());
-    return owned;
+    var out: std.ArrayList(u8) = .empty;
+    if (child.stdout) |f| {
+        var buf: [64 * 1024]u8 = undefined;
+        var reader = f.reader(io, &buf);
+        while (true) {
+            const chunk = reader.interface.peekGreedy(1) catch break;
+            out.appendSlice(allocator, chunk) catch break;
+            reader.interface.toss(chunk.len);
+        }
+    }
+
+    const term = child.wait(io) catch return Error.DownloadFailed;
+    switch (term) {
+        .exited => |code| if (code != 0) return Error.DownloadFailed,
+        else => return Error.DownloadFailed,
+    }
+    if (out.items.len == 0) return Error.DownloadFailed;
+    return out.toOwnedSlice(allocator);
 }
 
 fn verifySha1(body: []const u8, expected_hex: []const u8) !void {
@@ -173,6 +474,7 @@ pub fn prefetch(
         .next = .init(0),
         .fetched = .init(0),
         .bytes = .init(0),
+        .unverified = .init(0),
         .progress = progress,
     };
 
@@ -183,6 +485,7 @@ pub fn prefetch(
     // installs rather than failing.
     if (n == 1) {
         work(&shared);
+        last_unverified = shared.unverified.load(.monotonic);
         return shared.bytes.load(.monotonic);
     }
 
@@ -198,6 +501,7 @@ pub fn prefetch(
     for (threads[0..started]) |t| t.join();
 
     _ = allocator;
+    last_unverified = shared.unverified.load(.monotonic);
     return shared.bytes.load(.monotonic);
 }
 
@@ -220,8 +524,16 @@ const Shared = struct {
     next: std.atomic.Value(usize),
     fetched: std.atomic.Value(usize),
     bytes: std.atomic.Value(usize),
+    unverified: std.atomic.Value(usize),
     progress: ?*const fn (done: usize, total: usize, url: []const u8) void,
 };
+
+/// How many archives the last `prefetch` downloaded with no checksum.
+///
+/// A counter rather than a return value because `prefetch` already returns the
+/// byte total and the callers that care about this are reporting a summary, not
+/// making a decision mid-run.
+pub var last_unverified: usize = 0;
 
 fn work(shared: *Shared) void {
     // Each worker allocates from its own arena off the page allocator: the
@@ -244,6 +556,7 @@ fn work(shared: *Shared) void {
             continue;
         };
         if (!got.cached) _ = shared.bytes.fetchAdd(got.bytes, .monotonic);
+        if (got.unverified) _ = shared.unverified.fetchAdd(1, .monotonic);
 
         const done = shared.fetched.fetchAdd(1, .monotonic) + 1;
         if (shared.progress) |cb| cb(done, shared.wants.len, want.url);

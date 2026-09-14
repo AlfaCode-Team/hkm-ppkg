@@ -34,11 +34,29 @@ pub const Error = error{
 };
 
 /// One candidate version of a package, fully expanded.
+/// The `notification-url` packagist applies to every package it serves.
+///
+/// A REPOSITORY property, not a package one: it is absent from the per-package
+/// metadata and present in every lock entry, because `ComposerRepository` sets
+/// it on each package as it loads. Composer calls it after an install to record
+/// download counts.
+pub const notification_url = "https://packagist.org/downloads/";
+
+/// Which repository produced a candidate.
+///
+/// It decides one thing in the lock and nothing else: `notification-url` is a
+/// property of the REPOSITORY, not of the package, and Composer writes it only
+/// for packages served by a composer-type repository. Stamping it on a package
+/// read from a git remote or declared inline claims packagist served something
+/// it has never seen.
+pub const Origin = enum { packagist, vcs, declared, path };
+
 pub const Candidate = struct {
     name: []const u8,
     version: []const u8,
     version_normalized: []const u8,
     kind: []const u8 = "library",
+    origin: Origin = .packagist,
     /// The complete, expanded package object — what a lock entry is written from.
     raw: std.json.Value,
 
@@ -230,6 +248,8 @@ fn metadataBody(
 
     if (fresh(io, path, opts.ttl_seconds)) {
         if (Dir.cwd().readFileAlloc(io, path, allocator, .limited(32 * 1024 * 1024)) catch null) |cached| {
+            // A zero-byte file is a recorded MISS — see the write below.
+            if (cached.len == 0) return Error.MetadataUnavailable;
             return cached;
         }
     }
@@ -245,8 +265,18 @@ fn metadataBody(
         // resolution against yesterday's metadata is far more useful than a
         // failure.
         if (Dir.cwd().readFileAlloc(io, path, allocator, .limited(32 * 1024 * 1024)) catch null) |stale| {
-            return stale;
+            if (stale.len > 0) return stale;
         }
+
+        // Record the ABSENCE, as an empty file under the same TTL.
+        //
+        // Most packages have no `~dev.json` — it exists only where a repository
+        // publishes dev branches — so a project resolving with dev branches
+        // enabled asks for a document that is not there once per package. Not
+        // recording the miss meant re-asking on every single run: measured at
+        // ten seconds of pure 404s on a 189-package closure whose metadata was
+        // otherwise entirely cached.
+        util.writeFileAtomic(io, path, "") catch {};
         return Error.MetadataUnavailable;
     };
 

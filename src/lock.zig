@@ -27,11 +27,47 @@ pub const Dist = struct {
     shasum: []const u8 = "",
 };
 
+/// Where a package's code comes from when there is no dist archive.
+///
+/// Composer omits `dist` entirely for a package whose repository publishes no
+/// downloadable archive — a self-hosted git remote, a `package` repository that
+/// only names a source. Those install from a CLONE, which is slower and is why
+/// this is a fallback rather than the normal path, but a lock entry with a
+/// source and no dist is a package Composer installs and this used to refuse.
+pub const Source = struct {
+    /// `git`, `hg` or `svn` — all three are installable.
+    kind: []const u8 = "",
+    url: []const u8 = "",
+    reference: []const u8 = "",
+
+    pub fn isGit(self: Source) bool {
+        return self.isKind("git");
+    }
+
+    pub fn isHg(self: Source) bool {
+        return self.isKind("hg");
+    }
+
+    pub fn isSvn(self: Source) bool {
+        return self.isKind("svn");
+    }
+
+    /// Any source this package knows how to install from.
+    pub fn installable(self: Source) bool {
+        return self.isGit() or self.isHg() or self.isSvn();
+    }
+
+    fn isKind(self: Source, kind: []const u8) bool {
+        return std.mem.eql(u8, self.kind, kind) and self.url.len > 0 and self.reference.len > 0;
+    }
+};
+
 pub const Package = struct {
     name: []const u8,
     version: []const u8,
     kind: []const u8 = "library",
     dist: Dist = .{},
+    source: Source = .{},
     /// Executables the package publishes, relative to its own directory.
     bin: []const []const u8 = &.{},
     /// True when the package came from `packages-dev`.
@@ -53,15 +89,27 @@ pub const Lock = struct {
 
     pub const Requirement = struct { name: []const u8, constraint: []const u8 };
 
-    /// Packages that should be installed for this run.
+    /// The packages to install, sorted by name.
+    ///
+    /// Sorted because `installed.json` and `installed.php` are written from
+    /// this list and Composer writes both with the runtime and dev sets MERGED
+    /// and ordered by name — not `packages` followed by `packages-dev`, which
+    /// is how they arrive from the lock. Reproducing that here means the two
+    /// tools produce the same metadata rather than the same content in a
+    /// different order.
     pub fn selected(self: Lock, allocator: std.mem.Allocator, with_dev: bool) ![]const Package {
-        if (with_dev) return self.packages;
-
         var out: std.ArrayList(Package) = .empty;
         for (self.packages) |p| {
-            if (!p.dev) try out.append(allocator, p);
+            if (!with_dev and p.dev) continue;
+            try out.append(allocator, p);
         }
-        return out.toOwnedSlice(allocator);
+        const items = try out.toOwnedSlice(allocator);
+        std.mem.sort(Package, items, {}, byName);
+        return items;
+    }
+
+    fn byName(_: void, a: Package, b: Package) bool {
+        return std.mem.order(u8, a.name, b.name) == .lt;
     }
 };
 
@@ -112,6 +160,7 @@ fn collect(
             .version = strField(item.object, "version") orelse "",
             .kind = strField(item.object, "type") orelse "library",
             .dist = distOf(item.object),
+            .source = sourceOf(item.object),
             .bin = try strList(allocator, item.object, "bin"),
             .dev = dev,
             .raw = item,
@@ -136,6 +185,16 @@ fn distOf(obj: std.json.ObjectMap) Dist {
         .url = strField(raw.object, "url") orelse "",
         .reference = strField(raw.object, "reference") orelse "",
         .shasum = strField(raw.object, "shasum") orelse "",
+    };
+}
+
+fn sourceOf(obj: std.json.ObjectMap) Source {
+    const raw = obj.get("source") orelse return .{};
+    if (raw != .object) return .{};
+    return .{
+        .kind = strField(raw.object, "type") orelse "",
+        .url = strField(raw.object, "url") orelse "",
+        .reference = strField(raw.object, "reference") orelse "",
     };
 }
 
