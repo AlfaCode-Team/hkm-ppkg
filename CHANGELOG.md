@@ -12,6 +12,8 @@ because that is the change that matters to a consumer.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-09-14
+
 ### Added
 
 - **A standalone `ppkg` binary, released for every platform.** Linux x86_64,
